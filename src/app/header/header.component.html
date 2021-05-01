@@ -1,0 +1,36 @@
+<nav class="nav navbar-default" class="sticky">
+    <div class="container-fluid">
+        <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+
+        <div class="navbar-header" style="margin-right: 20px;">
+            <!-- <a href="/recipes" class="navbar-brand" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-style: italic; font-size: 22px; color: black;">Recipe Book</a> -->
+            <img src="assets/images/logo.png" style="height: 100px; width: 100px; margin-top: -25px;">
+        </div>
+       
+        <div class="navbar-default">   
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
+                <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/auth" *ngIf="!isAuthenticated">Log In</a></li>
+                <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/shopping-list" *ngIf="isAuthenticated">Shopping List</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated" style="margin-right: 20px;">
+                <li>
+                    <a style="font-size: 16px;">Welcome, {{getUserEmail().split('@')[0]}}</a>
+                </li>
+
+                <li class="dropdown" appDropDown>
+                    <a style="cursor: pointer; font-size: 16px;"  class="dropdown-toggle" role="button">Edit Recipes <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a style="cursor: pointer;" (click)="onSaveData()">Save Recipes</a></li>
+                        <li><a style="cursor: pointer;" (click)="onFetchData()">Show All Recipes</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a style="cursor: pointer; font-size: 16px;" (click)="onLogout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

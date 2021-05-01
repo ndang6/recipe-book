@@ -1,0 +1,9 @@
+.my-pagination /deep/ .ngx-pagination .current {
+  color: white;
+  background: black;
+}
+
+.slide-toggle /deep/ {
+  color: black;
+  font-size: 14px;
+}

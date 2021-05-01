@@ -1,0 +1,66 @@
+
+<div class="row" *ngIf="recipe.name">
+    <div class="col-xs-4">
+        <div class="btn-group" appDropDown style="margin-bottom: 5px;">
+            <button
+                type="button"
+                class="btn btn-primary dropdown-toggle"
+                style="font-size: 16px;">                
+                Edit Recipe <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <!-- <li><a style="cursor: pointer;" (click)="onAddToShoppingList()">To Shopping List</a></li> -->
+                <li><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+                <li><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
+            </ul>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients" style="background-color: white; font-size: 16px;">
+                {{ ingredient.name }} - {{ ingredient.amount }} {{ ingredient.unit }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-8">
+        <div style="margin-bottom: 30px; text-align: center;">
+            <a 
+                class="list-group-item clearfix" 
+                style="cursor: pointer; border: none; font-size: 30px; text-align: center; width: fit-content; margin: auto; margin-bottom: 10px"
+                routerLinkActive="active">{{recipe.name}}
+            </a>    
+            <img *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt="image" class="img-responsive" style="margin: auto; max-height: 300px; border-radius: 10%;">
+        </div> 
+
+        <button 
+            type="button" 
+            class="btn btn-primary" 
+            style="font-size: 16px; margin-bottom: 5px;"
+            *ngIf="recipe.instructions && recipe.instructions.length > 0">
+            Instructions
+        </button>
+        
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let instruction of recipe.instructions; let i = index" style="background-color: white; font-size: 16px;">
+                Step {{i + 1}} - {{ instruction.step }} 
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 
+<br />
+{{ recipe.videoURL }}
+<button *ngIf="recipe.name && !videoUrl" (click)="updateVideoUrl()">Load Video</button>
+<button *ngIf="videoUrl" (click)="removeVideoUrl()">Hide Video</button>
+<br /><br />
+
+<iframe
+    *ngIf="videoUrl"
+    width="560" 
+    height="315" 
+    [src]="videoUrl"
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe> -->
