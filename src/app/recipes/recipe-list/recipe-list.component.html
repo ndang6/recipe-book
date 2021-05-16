@@ -1,12 +1,12 @@
 <div style="padding-left: 20px; padding-right: 20px;">
     <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
     
-    <div style="margin-top: 20px;">
-        <app-search></app-search>
-    </div>
     <div class="row">
         <div class="col-xs-12">
-            <div style="margin-top: 5px; margin-bottom: 10px;">
+            <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
+                <div>
+                    <app-search></app-search>
+                </div>
                 <div>
                     <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 5px; font-size: 15px;">All Recipes</button>
                     <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">Save</button>

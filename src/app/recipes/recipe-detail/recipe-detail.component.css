@@ -1,1 +1,9 @@
+@media screen and (max-width: 768px) {
+  .row .col-xs-4 .smallscreen {
+    visibility: hidden;
+  }
 
+  .col-xs-8 {
+    margin-top: 40px;
+  }
+}
