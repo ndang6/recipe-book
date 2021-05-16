@@ -95,9 +95,15 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     if(this.mainOnly){
       this.recipes = this.recipes.filter(recipe => recipe.category === 'main')
       this.recipeService.setRecipes(this.recipes)
+
+      if(this.recipes.length < this.itemsPerPage){
+        this.currentPage = 1
+      }
     }
     else{
-      this.dataStorageService.fetchRecipes().subscribe()
+      this.dataStorageService.fetchRecipes().subscribe(response => {
+        this.currentPage = 1
+      })     
     }
   }
 }

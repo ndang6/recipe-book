@@ -8,20 +8,27 @@ import { DataStorageService } from "../data-storage.service";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent{
+  isEmpty: boolean = true;
+
   constructor(private recipeService: RecipeService, private dataStorageService: DataStorageService){}
 
   search(e: any){
     if(e.target.value === "") {
+      this.isEmpty = true;
       this.dataStorageService.fetchRecipes().subscribe();
     }
 
-    const recipes = this.recipeService.getRecipes()
+    this.isEmpty = false;
+    if(e.target.value.length < 3) return;
 
-    const updatedRecipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(e.target.value.toLowerCase()))
-    this.recipeService.setRecipes(updatedRecipes)
+    this.dataStorageService.fetchRecipes().subscribe(data => {
+      this.recipeService.setRecipes(data.filter(recipe => recipe.name.toLowerCase().includes(e.target.value.toLowerCase())))
+    });
   }
 
   onLeave(e){
     e.target.value = ""
+    this.isEmpty = true
+    this.dataStorageService.fetchRecipes().subscribe();
   }
 }

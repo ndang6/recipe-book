@@ -2,26 +2,27 @@
     <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
     
     <div style="margin-top: 20px;">
-        <button class="btn btn-success" (click)="onNewRecipe()" style="font-size: 15px;">New Recipe</button>
-        <app-search style="margin-left: 10px"></app-search>
+        <app-search></app-search>
     </div>
-    <hr>
     <div class="row">
         <div class="col-xs-12">
-            <div>
+            <div style="margin-top: 5px; margin-bottom: 10px;">
                 <div>
                     <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 5px; font-size: 15px;">All Recipes</button>
-                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">Save Recipes</button>
+                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">Save</button>
                     <button class="btn btn-primary" (click)="onClick()" style="font-size: 15px">Unselect</button>
                 </div>
                 <div style="margin-top: 5px;">
                     <button class="btn btn-light" (click)="handleDessertOnly()" style="font-size: 15px; margin-right: 5px;" [disabled]="mainOnly">Desserts</button>
                     <button class="btn btn-dark" (click)="handleMainOnly()" style="font-size: 15px" [disabled]="dessertOnly">Main Dishes</button>
+                    <button 
+                        (click)="onNewRecipe()" 
+                        style="font-size: 15px; background-color: white; border: none; color: mediumpurple; margin-left: 10px;">
+                        Add Recipe
+                    </button>
                 </div>              
             </div>
 
-            <br />
-            <br />
             <app-recipe-item 
                 *ngFor="let recipeItem of recipes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index"
                 [recipe]="recipeItem"

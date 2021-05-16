@@ -21,7 +21,9 @@ export class AuthComponent {
     }
 
     onSubmit(form: NgForm){
-        if(!form.valid) return;
+        if(!form.valid) {
+            return;
+        }
 
         const {email, password} = form.value;
 
@@ -31,8 +33,10 @@ export class AuthComponent {
 
         if(this.isLoginMode)
             authObs = this.authService.login(email, password);
-        else
+        else{
+            this.isLoginMode = true
             authObs = this.authService.signup(email, password);
+        }
         
         authObs.subscribe(res => {
             this.isLoading = false;
@@ -44,5 +48,20 @@ export class AuthComponent {
         });
         
         form.reset();
+    }
+
+    loginAsGuest(){
+        let authObs: Observable<AuthResponseData>;
+        this.isLoading = true;
+        authObs = this.authService.login('guest@gmail.com', 'password');
+
+        authObs.subscribe(res => {
+            this.isLoading = false;
+            this.dataStorageService.fetchRecipes().subscribe();
+            this.router.navigate(['/recipes']);
+        }, errMessage => {
+            this.error = errMessage;
+            this.isLoading = false;
+        });
     }
 }

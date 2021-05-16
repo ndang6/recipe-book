@@ -1,16 +1,16 @@
-<nav class="nav navbar-default" class="sticky">
-    <div class="container-fluid">
+<nav class="sticky">
+    <div class="displayFlex">
         <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
 
-        <div class="navbar-header" style="margin-right: 20px;">
+        <div class="navbar-header" style="margin-right: 20px; margin-left: 20px; display: flex;">
             <!-- <a href="/recipes" class="navbar-brand" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-style: italic; font-size: 22px; color: black;">Recipe Book</a> -->
-            <img src="assets/images/logo.png" style="height: 100px; width: 100px; margin-top: -25px;">
+            <a routerLink="/recipes"><img src="assets/images/logo.png" style="height: 100px; width: 100px; margin-top: -25px;"></a>
         </div>
        
         <div class="navbar-default">   
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
-                <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/auth" *ngIf="!isAuthenticated">Log In</a></li>
+                <!-- <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/auth" *ngIf="!isAuthenticated">Log In</a></li> -->
                 <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/shopping-list" *ngIf="isAuthenticated">Shopping List</a></li>
             </ul>
 
@@ -27,6 +27,14 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a style="cursor: pointer; font-size: 16px;" (click)="onLogout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="smallscreen">
+            <ul class="nav navbar-nav" style="margin-right: 10px;" *ngIf="isAuthenticated">
                 <li>
                     <a style="cursor: pointer; font-size: 16px;" (click)="onLogout()">Logout</a>
                 </li>

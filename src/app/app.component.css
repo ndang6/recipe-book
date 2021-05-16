@@ -11,8 +11,18 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: max-content;
 }
 
 .background2 {
   background-color: rgba(0, 0, 0, 0.4);
+  height: max-content;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+  }
 }
