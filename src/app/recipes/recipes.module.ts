@@ -9,10 +9,8 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
 import { RecipeItemComponent } from "./recipe-list/recipe-item/recipe-item.component";
 import { RecipeListComponent } from "./recipe-list/recipe-list.component";
 import { RecipesRoutingModule } from "./recipes-routing.module";
-import { SearchComponent } from "../shared/search/search.component";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle' 
-// import { UploadImageComponent } from "./recipe-upload-image/upload-image.component";
 
 @NgModule({
   declarations: [
@@ -20,9 +18,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
     RecipeListComponent,
     RecipeDetailComponent,
     RecipeItemComponent,
-    RecipeEditComponent,
-    SearchComponent,
-    // UploadImageComponent
+    RecipeEditComponent
   ],
   imports: [
     RouterModule, 

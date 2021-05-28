@@ -36,7 +36,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         this.recipes = recipes
       }
     );
-    this.recipes = this.recipeService.getRecipes();
   }
 
   ngOnDestroy(){
@@ -44,6 +43,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   onNewRecipe(){
+    this.dessertOnly = false;
+    this.mainOnly = false;
+    this.recipeService.setRecipes(this.recipeService.getFullRecipes())
+    
     this.router.navigate(['new'], {relativeTo: this.route})
   }
 
@@ -51,11 +54,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.dessertOnly = false;
     this.mainOnly = false;
 
-    this.dataStorageService.fetchRecipes().subscribe();
-    this.router.navigate(['recipes'])
-  }
-
-  onClick(){
+    this.recipeService.setRecipes(this.recipeService.getFullRecipes())
     this.router.navigate(['recipes'])
   }
 
@@ -72,38 +71,4 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   onHandleError(){
     this.error = null;
   } 
-
-  handleDessertOnly(){
-    this.dessertOnly = !this.dessertOnly
-
-    if(this.dessertOnly){
-      this.recipes = this.recipes.filter(recipe => recipe.category === 'dessert')
-      this.recipeService.setRecipes(this.recipes)
-
-      if(this.recipes.length < this.itemsPerPage){
-        this.currentPage = 1
-      }
-    }
-    else{
-      this.dataStorageService.fetchRecipes().subscribe()
-    }      
-  }
-
-  handleMainOnly(){
-    this.mainOnly = !this.mainOnly
-
-    if(this.mainOnly){
-      this.recipes = this.recipes.filter(recipe => recipe.category === 'main')
-      this.recipeService.setRecipes(this.recipes)
-
-      if(this.recipes.length < this.itemsPerPage){
-        this.currentPage = 1
-      }
-    }
-    else{
-      this.dataStorageService.fetchRecipes().subscribe(response => {
-        this.currentPage = 1
-      })     
-    }
-  }
 }

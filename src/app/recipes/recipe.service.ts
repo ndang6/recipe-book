@@ -9,6 +9,7 @@ export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
     
     private recipes: Recipe[] = [];
+    private fullRecipes: Recipe[] = [];
 
     constructor(private shoppingListService: ShoppingListService){}
 
@@ -17,8 +18,17 @@ export class RecipeService {
         this.recipesChanged.next(this.recipes.slice())
     }
 
+    setFullRecipes(recipes: Recipe[]){
+        this.fullRecipes = recipes
+    }
+
     getRecipes(){
         return this.recipes.slice(); // only get a copy of recipes
+    }
+
+    getFullRecipes(){
+        console.log(this.fullRecipes)
+        return this.fullRecipes.slice();
     }
 
     getRecipeById(index: number){

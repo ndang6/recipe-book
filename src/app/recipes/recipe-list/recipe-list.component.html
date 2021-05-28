@@ -3,24 +3,12 @@
     
     <div class="row">
         <div class="col-xs-12">
-            <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
-                <div>
-                    <app-search></app-search>
-                </div>
+            <div style="margin-top: 5px; margin-bottom: 10px; margin-top: 10px;" class="smallscreen">
                 <div>
                     <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 5px; font-size: 15px;">All Recipes</button>
-                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">Save</button>
-                    <button class="btn btn-primary" (click)="onClick()" style="font-size: 15px">Unselect</button>
-                </div>
-                <div style="margin-top: 5px;">
-                    <button class="btn btn-light" (click)="handleDessertOnly()" style="font-size: 15px; margin-right: 5px;" [disabled]="mainOnly">Desserts</button>
-                    <button class="btn btn-dark" (click)="handleMainOnly()" style="font-size: 15px" [disabled]="dessertOnly">Main Dishes</button>
-                    <button 
-                        (click)="onNewRecipe()" 
-                        style="font-size: 15px; background-color: white; border: none; color: mediumpurple; margin-left: 10px;">
-                        Add Recipe
-                    </button>
-                </div>              
+                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">Save All</button>
+                    <button class="btn btn-primary" (click)="onNewRecipe()" style="margin-right: 5px; font-size: 15px;">Add Recipe</button>
+                </div>            
             </div>
 
             <app-recipe-item 

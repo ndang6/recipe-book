@@ -1,4 +1,3 @@
-
 <div class="row" *ngIf="recipe.name">
     <div class="col-xs-4">
         <div class="btn-group smallscreen" appDropDown style="margin-bottom: 5px;">
@@ -22,6 +21,7 @@
         </ul>
     </div>
     <div class="col-xs-8">
+        <span (click)="onClose()" class="glyphicon glyphicon-remove" style="float: right; font-size: 20px; color: red;"></span>
         <div style="margin-bottom: 30px; text-align: center;">
             <a 
                 class="list-group-item clearfix" 
