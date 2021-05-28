@@ -17,9 +17,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   error: string = null;
 
-  dessertOnly: boolean = false;
-  mainOnly: boolean = false;
-
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
@@ -43,17 +40,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   onNewRecipe(){
-    this.dessertOnly = false;
-    this.mainOnly = false;
-    this.recipeService.setRecipes(this.recipeService.getFullRecipes())
-    
+    this.recipeService.setRecipes(this.recipeService.getFullRecipes()) 
     this.router.navigate(['new'], {relativeTo: this.route})
   }
 
   getRecipes(){
-    this.dessertOnly = false;
-    this.mainOnly = false;
-
     this.recipeService.setRecipes(this.recipeService.getFullRecipes())
     this.router.navigate(['recipes'])
   }

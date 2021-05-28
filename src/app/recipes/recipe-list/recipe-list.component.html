@@ -3,11 +3,18 @@
     
     <div class="row">
         <div class="col-xs-12">
-            <div style="margin-top: 5px; margin-bottom: 10px; margin-top: 10px;" class="smallscreen">
+            <p style="margin-top: 10px;">Number of Recipes: {{recipes.length}}</p>
+            <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
                 <div>
-                    <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 5px; font-size: 15px;">All Recipes</button>
-                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">Save All</button>
-                    <button class="btn btn-primary" (click)="onNewRecipe()" style="margin-right: 5px; font-size: 15px;">Add Recipe</button>
+                    <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 5px; font-size: 15px;">
+                        All Recipes
+                    </button>
+                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 5px; font-size: 15px;">
+                        Save All
+                    </button>
+                    <button class="btn btn-primary" (click)="onNewRecipe()" style="margin-right: 5px; font-size: 15px;">
+                        Add Recipe
+                    </button>
                 </div>            
             </div>
 
