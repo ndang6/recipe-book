@@ -6,3 +6,7 @@ textarea.ng-invalid.ng-touched {
 label {
   color: azure;
 }
+
+.row {
+  padding: 5px;
+}

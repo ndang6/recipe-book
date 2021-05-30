@@ -10,7 +10,8 @@ import { RecipeItemComponent } from "./recipe-list/recipe-item/recipe-item.compo
 import { RecipeListComponent } from "./recipe-list/recipe-list.component";
 import { RecipesRoutingModule } from "./recipes-routing.module";
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle' 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { RecipeJsonComponent } from './recipe-json/recipe-json.component' 
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
     RecipeListComponent,
     RecipeDetailComponent,
     RecipeItemComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    RecipeJsonComponent
   ],
   imports: [
     RouterModule, 

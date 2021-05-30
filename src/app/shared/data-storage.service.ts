@@ -13,6 +13,7 @@ export class DataStorageService {
     
     storeRecipes(){
         const recipes = this.recipeService.getRecipes();
+        console.log(recipes)
         this.http.put("https://recipe-book-9d0ab-default-rtdb.firebaseio.com/recipes.json", recipes).subscribe();
     }
 

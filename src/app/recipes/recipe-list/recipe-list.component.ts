@@ -13,6 +13,8 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
+  shortRecipes: Object[];
+  numOfDesserts: number;
 
   subscription: Subscription;
   error: string = null;
@@ -31,8 +33,16 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.subscription = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
         this.recipes = recipes
+        this.numOfDesserts = 0
+        for(let recipe of this.recipes){
+          if(recipe.category === 'dessert') this.numOfDesserts += 1
+        }
       }
     );
+  }
+
+  getShortRecipes(){
+    this.shortRecipes = this.recipes.map(recipe => {return {'name': recipe.name, 'ingredients': recipe.ingredients, 'instructions': recipe.instructions}})
   }
 
   ngOnDestroy(){
@@ -42,6 +52,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   onNewRecipe(){
     this.recipeService.setRecipes(this.recipeService.getFullRecipes()) 
     this.router.navigate(['new'], {relativeTo: this.route})
+  }
+
+  onShowJSON(){
+    this.router.navigate(['json'], {relativeTo: this.route})
   }
 
   getRecipes(){

@@ -1,10 +1,5 @@
-.container {
-  margin: 30px;
-}
-
 .background1 {
   border-radius: 10px;
-  margin-left: 10px;
   min-height: 100vh;
 
   background-image: url("../../assets/images/cooking-gif.gif");
@@ -20,5 +15,4 @@
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   min-height: 100vh;
-  padding: 10px;
 }

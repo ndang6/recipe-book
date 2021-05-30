@@ -27,7 +27,6 @@ export class RecipeService {
     }
 
     getFullRecipes(){
-        console.log(this.fullRecipes)
         return this.fullRecipes.slice();
     }
 

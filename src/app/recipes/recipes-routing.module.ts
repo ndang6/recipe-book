@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../auth/auth.guard";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
+import { RecipeJsonComponent } from "./recipe-json/recipe-json.component";
 import { RecipesResolverService } from "./recipes-resolver.service";
 import { RecipesComponent } from "./recipes.component";
 
@@ -12,10 +13,11 @@ const routes: Routes = [
     component: RecipesComponent, 
     canActivate: [AuthGuard],
     children: [
+      {path: 'json', component: RecipeJsonComponent},
       {path: 'new', component: RecipeEditComponent},
       {path: ':id', component: RecipeDetailComponent},   
       // {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService]}
-      {path: ':id/edit', component: RecipeEditComponent}
+      {path: ':id/edit', component: RecipeEditComponent}    
     ]
   }
 ]
