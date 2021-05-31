@@ -143,32 +143,29 @@ export class RecipeEditComponent implements OnInit {
     (<FormArray>this.recipeForm.get('instructions')).removeAt(index);
   }
 
-  onSelectFile(event) { 
-    var n = Date.now();
+  onSelectFile(event: any) {
+    if (!event.target.files || !event.target.files[0]) return;
 
     const file = event.target.files[0]
-    const filePath = event.target.files[0].name.split('.')[0]
-    const fileRef = this.storage.ref(filePath)
+    const fileName = event.target.files[0].name.split('.')[0]
+    const fileRef = this.storage.ref(fileName)
 
-    const task = this.storage.upload(filePath, file)
-
-    task
+    this.storage.upload(fileName, file)
       .snapshotChanges()
       .pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => this.localImageURL = url)
+          // url = https://firebasestorage.googleapis.com/v0/b/recipe-book-9d0ab.appspot.com/o/signature?alt=media&token=66b3e7dd-2d3e-46e5-bd8d-3e8e8e422295
         })
       ).subscribe()
 
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
 
-      reader.onload = (event) => {
-        this.selectedFile = event.target.result;  
-      }
-    } 
+    reader.onload = (event) => {
+      this.selectedFile = event.target.result;  
+    }
   }
 
   formattedName(name: String) {

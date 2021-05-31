@@ -15,6 +15,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   shortRecipes: Object[];
   numOfDesserts: number;
+  isAdmin: boolean = false;
 
   subscription: Subscription;
   error: string = null;
@@ -30,6 +31,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isAdmin = (this.authService.user.value.email === "admin@test.com") || (this.authService.user.value.email === "maica59aimable@gmail.com")
+
     this.subscription = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
         this.recipes = recipes
