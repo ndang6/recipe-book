@@ -1,15 +1,18 @@
 <div style="padding-left: 20px; padding-right: 20px;" *ngIf="recipes; else loading">
-    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+    <app-alert [message]="error" *ngIf="error" (close)="onClose()"></app-alert>
     
     <div class="row">
         <div class="col-xs-12">
-            <p style="margin-top: 10px;">{{recipes.length}} recipes, including {{numOfDesserts}} desserts.</p>
+            <p style="margin-top: 10px;">Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts.</p>
+            <!-- <p style="margin-top: 10px;">{{fullRecipes.length}} recipes.</p> -->
+            <p style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)">Unsaved Changes</p>
+            
             <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
                 <div>
                     <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 3px; font-size: 15px;">
                         All Recipes
                     </button>
-                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 3px; font-size: 15px;">
+                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 3px; font-size: 15px;" *ngIf="diff(recipes, fullRecipes)">
                         Save
                     </button>
                     <button class="btn btn-primary" (click)="onNewRecipe()" style="margin-right: 3px; font-size: 15px;">

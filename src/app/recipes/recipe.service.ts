@@ -1,55 +1,60 @@
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
-import { Ingredient } from "./ingredient.model";
-import { ShoppingListService } from "../shopping-list/shopping-list.service";
-import { Recipe } from "./recipe.model";
+import { Injectable } from "@angular/core"
+import { Subject } from "rxjs"
+import { Ingredient } from "./ingredient.model"
+import { ShoppingListService } from "../shopping-list/shopping-list.service"
+import { Recipe } from "./recipe.model"
 
 @Injectable()
 export class RecipeService {
-    recipesChanged = new Subject<Recipe[]>();
-    
-    private recipes: Recipe[] = [];
-    private fullRecipes: Recipe[] = [];
+    recipesChanged = new Subject<Recipe[]>()
+    fullRecipesChanged = new Subject<Recipe[]>()
+    isEdited = new Subject<boolean>()
+
+    private recipes: Recipe[] = []
+    private fullRecipes: Recipe[] = []
 
     constructor(private shoppingListService: ShoppingListService){}
 
     setRecipes(recipes: Recipe[]){
-        this.recipes = recipes;
+        this.recipes = JSON.parse(JSON.stringify(recipes)) // deep copy
         this.recipesChanged.next(this.recipes.slice())
     }
 
     setFullRecipes(recipes: Recipe[]){
-        this.fullRecipes = recipes
+        this.fullRecipes = JSON.parse(JSON.stringify(recipes))
+        this.fullRecipesChanged.next(this.fullRecipes.slice())
     }
 
     getRecipes(){
-        return this.recipes.slice(); // only get a copy of recipes
+        return this.recipes.slice() // only get a copy of recipes
     }
 
     getFullRecipes(){
-        return this.fullRecipes.slice();
+        console.log(this.fullRecipes.length)
+        return this.fullRecipes.slice()
     }
 
     getRecipeById(index: number){
-        return this.recipes[index];
+        return this.recipes[index]
     }
 
     addIngredientsToShoppingList(ingredients: Ingredient[]){
-        this.shoppingListService.addIngredients(ingredients);
+        this.shoppingListService.addIngredients(ingredients)
     }
 
     addRecipe(recipe: Recipe){
-        this.recipes.push(recipe);
-        this.recipesChanged.next(this.recipes.slice());
+        this.recipes.push(recipe)
+        this.recipesChanged.next(this.recipes.slice())
     }
 
     updateRecipe(index: number, newRecipe: Recipe){
-        this.recipes[index] = newRecipe;
-        this.recipesChanged.next(this.recipes.slice());
+        this.recipes[index] = newRecipe
+        this.recipesChanged.next(this.recipes.slice())
+        this.isEdited.next(true)
     }
 
     deleteRecipe(index: number){
-        this.recipes.splice(index, 1);
-        this.recipesChanged.next(this.recipes.slice());
+        this.recipes.splice(index, 1)
+        this.recipesChanged.next(this.recipes.slice())
     }
 }

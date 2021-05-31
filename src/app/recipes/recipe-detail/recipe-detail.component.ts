@@ -53,7 +53,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEditRecipe(){
-    this.recipeService.setRecipes(this.recipeService.getFullRecipes())
     this.router.navigate(['edit'], {relativeTo: this.route})
   }
 

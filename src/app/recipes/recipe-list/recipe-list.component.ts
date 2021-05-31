@@ -13,11 +13,15 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
+  fullRecipes: Recipe[];
   shortRecipes: Object[];
   numOfDesserts: number;
   isAdmin: boolean = false;
+  isEdited: boolean = false;
 
-  subscription: Subscription;
+  recipesSubscription: Subscription;
+  fullRecipesSubscription: Subscription;
+  isEditedSubscription: Subscription;
   error: string = null;
 
   currentPage: number = 1;
@@ -33,7 +37,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isAdmin = (this.authService.user.value.email === "admin@test.com") || (this.authService.user.value.email === "maica59aimable@gmail.com")
 
-    this.subscription = this.recipeService.recipesChanged.subscribe(
+    this.recipesSubscription = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
         this.recipes = recipes
         this.numOfDesserts = 0
@@ -42,6 +46,19 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         }
       }
     );
+
+    this.fullRecipesSubscription = this.recipeService.fullRecipesChanged.subscribe(
+      (recipes: Recipe[]) => {
+        this.fullRecipes = recipes
+      }
+    );
+
+    this.isEditedSubscription = this.recipeService.isEdited.subscribe((value: boolean) => this.isEdited = value)
+  }
+
+  diff(array1: Recipe[], array2: Recipe[]){
+    if( (array1.length !== array2.length) || this.isEdited) return true
+    return false
   }
 
   getShortRecipes(){
@@ -49,11 +66,12 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.recipesSubscription.unsubscribe();
+    this.fullRecipesSubscription.unsubscribe();
+    this.isEditedSubscription.unsubscribe();
   }
 
   onNewRecipe(){
-    this.recipeService.setRecipes(this.recipeService.getFullRecipes()) 
     this.router.navigate(['new'], {relativeTo: this.route})
   }
 
@@ -63,11 +81,12 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   getRecipes(){
     this.recipeService.setRecipes(this.recipeService.getFullRecipes())
+    this.recipeService.isEdited.next(false)
     this.router.navigate(['recipes'])
   }
 
   onSaveData(){
-    if( (this.authService.user.value.email === "admin@test.com") || (this.authService.user.value.email === "maica59aimable@gmail.com") ){
+    if(this.isAdmin){
         this.dataStorageService.storeRecipes();
         this.error = "Save successfully"
     }
@@ -76,7 +95,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     }
   }
 
-  onHandleError(){
+  onClose(){
+    this.recipeService.setFullRecipes(this.recipeService.getRecipes())
+    this.recipeService.isEdited.next(false)
+    this.currentPage = 1
     this.error = null;
   } 
 }
