@@ -3,12 +3,16 @@
         <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
 
         <div class="navbar-header" style="margin-left: 20px; margin-right: 20px;">
-            <a routerLink="/recipes"><img src="assets/images/logo.png" style="height: 100px; width: 100px; margin-top: -25px;"></a>
+            <a routerLink="/recipes">
+                <img src="assets/images/logo.png" style="height: 100px; width: 100px; margin-top: -25px;">
+            </a>
         </div>
        
         <div class="navbar-default">   
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
+                <li routerLinkActive="active">
+                    <a style="font-size: 16px;" routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a>
+                </li>
                 <!-- <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/shopping-list" *ngIf="isAuthenticated">Shopping List</a></li> -->
             </ul>
 

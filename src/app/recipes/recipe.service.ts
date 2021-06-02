@@ -26,7 +26,7 @@ export class RecipeService {
     }
 
     getRecipes(){
-        return this.recipes.slice() // only get a copy of recipes
+        return this.recipes.slice() // returns a new array which is an exact copy
     }
 
     getFullRecipes(){

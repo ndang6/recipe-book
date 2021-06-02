@@ -82,7 +82,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   getRecipes(){
     this.recipeService.setRecipes(this.recipeService.getFullRecipes())
     this.recipeService.isEdited.next(false)
-    this.router.navigate(['recipes'])
+    this.router.navigate(['/recipes'])
   }
 
   onSaveData(){

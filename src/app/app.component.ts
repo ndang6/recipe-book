@@ -14,6 +14,5 @@ export class AppComponent implements OnInit{
     this.authService.autoLogin();
     this.dataStorageService.fetchRecipes().subscribe();
   } 
-
 }
  
