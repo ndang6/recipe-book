@@ -83,6 +83,7 @@ export class RecipeEditComponent implements OnInit {
       }
     }
 
+    // Initialize Form
     this.recipeForm = new FormGroup({
       'name': new FormControl(recipeName, Validators.required),
       'category': new FormControl(recipeCategory, Validators.required),
@@ -99,16 +100,15 @@ export class RecipeEditComponent implements OnInit {
     if(this.localImageURL) imagePath = this.localImageURL
     const newRecipe = new Recipe(name, category, description, imagePath, this.selectedFile, ingredients, "https://www.youtube.com/embed/tB55iAo3p2Y", instructions);
       
-    if(this.editMode){
+    if(this.editMode)
       this.recipeService.updateRecipe(this.id, newRecipe);
-    }
-    else{
+    else
       this.recipeService.addRecipe(newRecipe);
-    }
+
     this.onCancel();
   }
 
-  getIngredientsControls() { // a getter!
+  getIngredientsControls() {
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 

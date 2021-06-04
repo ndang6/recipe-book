@@ -24,13 +24,29 @@
                         style="font-size: 15px;">
                         JSON
                     </button>
+                    
                 </div>            
             </div>
-
+            <div style="margin-bottom: 10px;">
+                <button class="transparentButton" (click)="onSelectCategory('main')">
+                    <fa-icon [icon]="faUtensils" style="font-size: 25px;"></fa-icon>
+                </button>
+                <button class="transparentButton" (click)="onSelectCategory('dessert')">
+                    <fa-icon [icon]="faIceCream" style="font-size: 25px;"></fa-icon>
+                </button>
+                <input
+                    (input)="search($event)" 
+                    placeholder="Search..." 
+                    style="padding: 6px; font-size: 16px; width: 140px; border: none; margin-left: 5px">
+            </div>
+                      
             <app-recipe-item 
-                *ngFor="let recipeItem of recipes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index"
+                *ngFor="let recipeItem of recipes 
+                    | categoryFilter: categorySelected: 'category' 
+                    | nameFilter: nameSelected: 'name'
+                    | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index"
                 [recipe]="recipeItem"
-                [index] = "itemsPerPage * (currentPage-1) + i">
+                [index] = "recipeItem.id">
             </app-recipe-item>
 
             <pagination-controls

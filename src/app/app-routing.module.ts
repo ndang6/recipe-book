@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'recipes', loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule)},
   {path: 'auth', component: AuthComponent},
   {path: 'shopping-list', component: ShoppingListComponent},
+  {path: '**', redirectTo: '/recipes', pathMatch: 'full'}
 ];
 
 @NgModule({

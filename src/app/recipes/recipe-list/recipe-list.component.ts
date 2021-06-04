@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
+import { faIceCream, faUtensils } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-recipe-list',
@@ -12,6 +13,11 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
+  faIceCream = faIceCream;
+  faUtensils = faUtensils;
+  categorySelected: string = '';
+  nameSelected: string = '';
+
   recipes: Recipe[];
   fullRecipes: Recipe[];
   shortRecipes: Object[];
@@ -81,6 +87,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   getRecipes(){
     this.recipeService.setRecipes(this.recipeService.getFullRecipes())
+    this.categorySelected = ''
+    this.currentPage = 1
+
     this.recipeService.isEdited.next(false)
     this.router.navigate(['/recipes'])
   }
@@ -100,5 +109,13 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.recipeService.isEdited.next(false)
     this.currentPage = 1
     this.error = null;
-  } 
+  }
+  
+  onSelectCategory(value: string){
+    this.categorySelected = value
+  }
+
+  search(event: any){   
+    this.nameSelected = event.target.value
+  }
 }

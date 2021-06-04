@@ -12,6 +12,9 @@ import { RecipesRoutingModule } from "./recipes-routing.module";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RecipeJsonComponent } from './recipe-json/recipe-json.component' 
+import { CategoryFilterPipe } from "./recipe-list/categoryFilter.pipe";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { NameFilterPipe } from "./recipe-list/nameFilter.pipe";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { RecipeJsonComponent } from './recipe-json/recipe-json.component'
     RecipeDetailComponent,
     RecipeItemComponent,
     RecipeEditComponent,
-    RecipeJsonComponent
+    RecipeJsonComponent,
+    CategoryFilterPipe,
+    NameFilterPipe
   ],
   imports: [
     RouterModule, 
@@ -28,7 +33,8 @@ import { RecipeJsonComponent } from './recipe-json/recipe-json.component'
     RecipesRoutingModule,
     SharedModule,
     NgxPaginationModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FontAwesomeModule
   ],
 })
 export class RecipesModule {}

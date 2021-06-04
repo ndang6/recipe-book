@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component, ViewChild } from "@angular/core";
+import { NgForm, NgModel } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { DataStorageService } from "../shared/data-storage.service";
@@ -11,6 +11,8 @@ import { AuthResponseData, AuthService } from "./auth.service";
     styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
+    @ViewChild('email') emailInput: NgModel;
+    @ViewChild('password') passwordInput: NgModel;
     isLoginMode = true;
     isLoading = false;
     error: string = null;
@@ -19,12 +21,12 @@ export class AuthComponent {
 
     onSwitchMode(){
         this.isLoginMode = !this.isLoginMode;
+        this.emailInput.reset()
+        this.passwordInput.reset()
     }
 
     onSubmit(form: NgForm){
-        if(!form.valid) {
-            return;
-        }
+        if(!form.valid) return;
 
         const {email, password} = form.value;
 

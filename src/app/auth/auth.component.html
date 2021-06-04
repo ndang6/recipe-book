@@ -8,33 +8,31 @@
             <app-loading-spinner></app-loading-spinner>
         </div>
 
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+        <!-- TEMPLATE-DRIVEN FORM -->
+        <form 
+            #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" 
+            *ngIf="!isLoading">
             <div class="form-group">
                 <label for="email" style="color: white;">Email</label>
                 <input
-                    autofocus="on"
-                    type="email" 
-                    id="email" 
-                    class="form-control" 
-                    ngModel
-                    name="email"
-                    required
-                    email/>
+                    type="email" id="email"
+                    ngModel name="email"           
+                    required email
+                    class="form-control"
+                    #email="ngModel"/>
+                <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email.</span>
             </div>
 
             <div class="form-group">
                 <label for="password" style="color: white;">Password</label>
                 <input
-                    type="password" 
-                    id="password" 
-                    class="form-control" 
-                    ngModel
-                    name="password"
-                    required
-                    minlength="6"/>
+                    type="password" id="password"
+                    ngModel name="password"
+                    required minlength="6"
+                    class="form-control"
+                    #password="ngModel"/>
+                <span class="help-block" *ngIf="!password.valid && password.touched">Password is at least 6 characters.</span>
             </div>
-            <p *ngIf="!isLoginMode" style="color: white;">Email Format (user@gmail.com)</p>
-            <p *ngIf="!isLoginMode" style="color: white;">Minimum 6-character password</p>
 
             <div>
                 <button 
@@ -51,7 +49,12 @@
                 </button>
             </div>
 
-            <button class="btn btn-success" style="margin-top: 10px;" (click)="loginAsGuest()">Continue As Guest</button>
+            <button 
+                class="btn btn-success" 
+                style="margin-top: 10px;" 
+                (click)="loginAsGuest()">
+                Continue As Guest
+            </button>
         </form>
     </div>
 </div>
