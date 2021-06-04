@@ -6,6 +6,10 @@
     <div class="col-md-8">
         <div class="background1" >
             <div class="background2">
+                <div class="alert alert-danger" *ngIf="error">
+                    <h1>An Error Occurred!</h1>
+                    {{ error }}
+                </div>
                 <router-outlet></router-outlet>
             </div>        
         </div>       

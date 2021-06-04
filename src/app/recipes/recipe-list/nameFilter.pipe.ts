@@ -5,11 +5,12 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class NameFilterPipe implements PipeTransform {
   transform(value: string, filterString: string, propName: string) {
-    if(filterString === '') return value
+    if(filterString === '' || filterString.length < 3) return value
 
     const resultArray = []
     for(const item of value){
-      if(item[propName].includes(filterString)){
+      let lowercaseName = item[propName].toLowerCase()
+      if(lowercaseName.includes(filterString.toLowerCase())){
         resultArray.push(item)
       }
     }

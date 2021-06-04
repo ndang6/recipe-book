@@ -109,6 +109,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.recipeService.isEdited.next(false)
     this.currentPage = 1
     this.error = null;
+    this.router.navigate(['/recipes'])
   }
   
   onSelectCategory(value: string){
