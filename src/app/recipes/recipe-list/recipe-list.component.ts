@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { faIceCream, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faIceCream, faUtensils, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,25 +13,27 @@ import { faIceCream, faUtensils } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
-  faIceCream = faIceCream;
-  faUtensils = faUtensils;
-  categorySelected: string = '';
-  nameSelected: string = '';
+  faIceCream = faIceCream
+  faUtensils = faUtensils
+  faQuestion = faQuestion
 
-  recipes: Recipe[];
-  fullRecipes: Recipe[];
-  shortRecipes: Object[];
-  numOfDesserts: number;
-  isAdmin: boolean = false;
-  isEdited: boolean = false;
+  categorySelected: string = ''
+  nameSelected: string = ''
 
-  recipesSubscription: Subscription;
-  fullRecipesSubscription: Subscription;
-  isEditedSubscription: Subscription;
-  error: string = null;
+  recipes: Recipe[]
+  fullRecipes: Recipe[]
+  shortRecipes: Object[]
+  numOfDesserts: number
+  isAdmin: boolean = false
+  isEdited: boolean = false
 
-  currentPage: number = 1;
-  itemsPerPage: number = 6;
+  recipesSubscription: Subscription
+  fullRecipesSubscription: Subscription
+  isEditedSubscription: Subscription
+
+  error: string = null
+  currentPage: number = 1
+  itemsPerPage: number = 6
 
   constructor(
     private recipeService: RecipeService, 
@@ -113,6 +115,13 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   onSelectCategory(value: string){
     this.currentPage = 1
     this.categorySelected = value
+  }
+
+  onSelectRandom(){
+    const randomNum = Math.round(Math.random() * (this.recipes.length-1) )
+    this.currentPage = (Math.floor((randomNum / this.itemsPerPage)) + 1)
+
+    this.router.navigate([`/recipes/${randomNum}`], {relativeTo: this.route})
   }
 
   search(event: any){
