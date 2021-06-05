@@ -96,27 +96,27 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   onSaveData(){
     if(this.isAdmin){
-        this.dataStorageService.storeRecipes();
-        this.error = "Save successfully"
+      this.error = "Save successfully"
+      this.dataStorageService.storeRecipes().subscribe()   
     }
-    else{
-        this.error = "Sorry! You don't have the permission to save recipes."
-    }
+    else
+      this.error = "Sorry! You don't have the permission to save recipes."
   }
 
   onClose(){
-    this.recipeService.setFullRecipes(this.recipeService.getRecipes())
     this.recipeService.isEdited.next(false)
-    this.currentPage = 1
-    this.error = null;
+    this.recipeService.setFullRecipes(this.recipes)
+    this.error = null
     this.router.navigate(['/recipes'])
   }
   
   onSelectCategory(value: string){
+    this.currentPage = 1
     this.categorySelected = value
   }
 
-  search(event: any){   
+  search(event: any){
+    this.currentPage = 1   
     this.nameSelected = event.target.value
   }
 }

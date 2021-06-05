@@ -3,7 +3,18 @@
     
     <div class="row">
         <div class="col-xs-12">
-            <p style="margin-top: 10px;">Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts.</p>
+            <p style="margin-top: 10px;" *ngIf="!categorySelected && nameSelected.length < 3">
+                Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts.
+            </p>
+            <p style="margin-top: 10px;" *ngIf="categorySelected === 'dessert'">
+                Total {{numOfDesserts}} desserts.
+            </p>
+            <p style="margin-top: 10px;" *ngIf="categorySelected === 'main'">
+                Total {{recipes.length - numOfDesserts}} main dishes.
+            </p>
+            <p style="margin-top: 10px;" *ngIf="nameSelected.length >= 3">
+                Search Result
+            </p>
             <!-- <p style="margin-top: 10px;">{{fullRecipes.length}} recipes.</p> -->
             <p style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)">Unsaved Changes</p>
             
@@ -28,11 +39,11 @@
                 </div>            
             </div>
             <div style="margin-bottom: 10px;">
-                <button class="transparentButton" (click)="onSelectCategory('main')">
-                    <fa-icon [icon]="faUtensils" style="font-size: 25px;"></fa-icon>
+                <button class="transparentButton" (click)="onSelectCategory('main')" >
+                    <fa-icon [icon]="faUtensils" style="font-size: 25px;" matTooltip="Main dishes only"></fa-icon>
                 </button>
                 <button class="transparentButton" (click)="onSelectCategory('dessert')">
-                    <fa-icon [icon]="faIceCream" style="font-size: 25px;"></fa-icon>
+                    <fa-icon [icon]="faIceCream" style="font-size: 25px;" matTooltip="Desserts only"></fa-icon>
                 </button>
                 <input
                     (input)="search($event)" 

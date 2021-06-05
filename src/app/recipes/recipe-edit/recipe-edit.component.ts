@@ -95,10 +95,11 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSave(){
-    let {name, category, description, imagePath, ingredients, instructions} = this.recipeForm.value;
+    let {name, category, description, imagePath, ingredients, instructions} = this.recipeForm.value
+    let totalItems: number = this.recipeService.getRecipes().length
 
     if(this.localImageURL) imagePath = this.localImageURL
-    const newRecipe = new Recipe(name, category, description, imagePath, this.selectedFile, ingredients, "https://www.youtube.com/embed/tB55iAo3p2Y", instructions);
+    const newRecipe = new Recipe(totalItems, name, category, description, imagePath, this.selectedFile, ingredients, "https://www.youtube.com/embed/tB55iAo3p2Y", instructions);
       
     if(this.editMode)
       this.recipeService.updateRecipe(this.id, newRecipe);

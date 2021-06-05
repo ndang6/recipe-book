@@ -101,25 +101,26 @@
                         class="row"
                         *ngFor="let instructionCtrl of getInstructionsControls(); let i = index"
                         [formGroupName]="i"
-                        style="margin-top: 10px;">
-                    <div class="col-xs-1">
-                        <p style="font-size: 15px; margin-top: 10px; color: 'white'">{{i + 1}}.</p>
-                    </div>
-                    <div class="col-xs-10">
-                        <textarea
-                            type="string"
-                            class="form-control"
-                            formControlName="step">
-                        </textarea>
-                    </div>
-                    <div class="col-xs-1">
-                        <button 
-                            type="button"
-                            class="btn btn-danger"
-                            style="margin-top: 7px;"
-                            (click)="onDeleteInstruction(i)">X
-                        </button>
-                    </div>
+                        style="margin-top: 10px;"
+                    >
+                        <div class="col-xs-1">
+                            <p style="font-size: 15px; margin-top: 10px; color: 'white'">{{i + 1}}.</p>
+                        </div>
+                        <div class="col-xs-10">
+                            <textarea
+                                type="string"
+                                class="form-control"
+                                formControlName="step">
+                            </textarea>
+                        </div>
+                        <div class="col-xs-1">
+                            <button 
+                                type="button"
+                                class="btn btn-danger"
+                                style="margin-top: 7px;"
+                                (click)="onDeleteInstruction(i)">X
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,7 +148,8 @@
                         class="row"
                         *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
                         [formGroupName]="i"
-                        style="margin-top: 10px;">
+                        style="margin-top: 10px;"
+                    >
                         <!-- <p>{{ingredientCtrl.value.name}}</p> -->
                         <div class="col-xs-6">
                             <input

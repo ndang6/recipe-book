@@ -30,7 +30,6 @@ export class RecipeService {
     }
 
     getFullRecipes(){
-        console.log(this.fullRecipes.length)
         return this.fullRecipes.slice()
     }
 
@@ -44,6 +43,7 @@ export class RecipeService {
 
     addRecipe(recipe: Recipe){
         this.recipes.push(recipe)
+        console.log(this.recipes)
         this.recipesChanged.next(this.recipes.slice())
     }
 

@@ -15,6 +15,7 @@ import { RecipeJsonComponent } from './recipe-json/recipe-json.component'
 import { CategoryFilterPipe } from "./recipe-list/categoryFilter.pipe";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NameFilterPipe } from "./recipe-list/nameFilter.pipe";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NameFilterPipe } from "./recipe-list/nameFilter.pipe";
     SharedModule,
     NgxPaginationModule,
     MatSlideToggleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatTooltipModule
   ],
 })
 export class RecipesModule {}

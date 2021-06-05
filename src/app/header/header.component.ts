@@ -24,15 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
         });
     }
 
-    onSaveData(){
-        if( (this.authService.user.value.email === "admin@test.com") || (this.authService.user.value.email === "maica59aimable@gmail.com") ){
-            this.dataStorageService.storeRecipes();
-        }
-        else{
-            this.error = "Sorry! You don't have the permission to save recipes."
-        }
-    }
-
     onFetchData(){
         this.dataStorageService.fetchRecipes().subscribe(); 
     }
