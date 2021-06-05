@@ -10,7 +10,7 @@
 
         <!-- TEMPLATE-DRIVEN FORM -->
         <form 
-            #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" 
+            #authForm="ngForm" (ngSubmit)="onSubmit()" 
             *ngIf="!isLoading">
             <div class="form-group">
                 <label for="email" style="color: white;">Email</label>
@@ -39,7 +39,8 @@
                     class="btn btn-primary" 
                     type="submit"
                     [disabled]="!authForm.valid">
-                    {{ isLoginMode ? "Log In" : "Sign Up"}}
+                    <span *ngIf="!authForm.valid" matTooltip="Please provide valid credentials" style="color: white">{{ isLoginMode ? "Log In" : "Sign Up"}}</span>
+                    <span *ngIf="authForm.valid" style="color: white">{{ isLoginMode ? "Log In" : "Sign Up"}}</span>
                 </button>
                 <button 
                     *ngIf="isLoginMode" 

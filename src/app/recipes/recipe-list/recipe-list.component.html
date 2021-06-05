@@ -1,21 +1,27 @@
-<div style="padding-left: 20px; padding-right: 20px;" *ngIf="recipes; else loading">
+<ng-template #loading>
+    <div style="padding-left: 20px; padding-right: 20px; display: flex; margin-top: 10px; font-size: 15px;">
+        Loading All Recipes... <mat-spinner [diameter]="50" style="margin-left: 20px; margin-bottom: 10px;"></mat-spinner>
+    </div>   
+</ng-template>
+
+<div style="padding-left: 20px; padding-right: 20px;" *ngIf="!isLoading; else loading">
     <app-alert [message]="error" *ngIf="error" (close)="onClose()"></app-alert>
     
     <div class="row">
         <div class="col-xs-12">
-            <p style="margin-top: 10px;" *ngIf="!categorySelected && nameSelected.length < 3">
+            <p style="margin-top: 10px; font-size: 15px;" *ngIf="!categorySelected && nameSelected.length < 3">
                 Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts.
                 <button class="transparentButton" (click)="onSelectRandom()" >
                     <fa-icon [icon]="faQuestion" style="font-size: 15px;" matTooltip="Pick a random recipe"></fa-icon>
                 </button>
             </p>
-            <p style="margin-top: 10px;" *ngIf="categorySelected === 'dessert'">
+            <p style="margin-top: 10px; font-size: 15px;" *ngIf="categorySelected === 'dessert'">
                 Total {{numOfDesserts}} desserts.
             </p>
-            <p style="margin-top: 10px;" *ngIf="categorySelected === 'main'">
+            <p style="margin-top: 10px; font-size: 15px;" *ngIf="categorySelected === 'main'">
                 Total {{recipes.length - numOfDesserts}} main dishes.
             </p>
-            <p style="margin-top: 10px;" *ngIf="nameSelected.length >= 3">
+            <p style="margin-top: 10px; font-size: 15px;" *ngIf="nameSelected.length >= 3">
                 Search Result
             </p>
             <!-- <p style="margin-top: 10px;">{{fullRecipes.length}} recipes.</p> -->
@@ -51,7 +57,7 @@
                 <input
                     (input)="search($event)" 
                     placeholder="Search..." 
-                    style="padding: 3px; font-size: 16px; width: 140px; border: none; margin-left: 3px">
+                    style="padding: 3px; font-size: 15px; width: 140px; border: none; margin-left: 3px">
             </div>
                       
             <app-recipe-item 
@@ -70,4 +76,3 @@
         </div>
     </div>
 </div>
-<ng-template #loading>Loading...</ng-template>

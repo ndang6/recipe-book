@@ -5,3 +5,7 @@
 span {
   color: black;
 }
+
+/deep/ .mat-tooltip {
+  font-size: 15px;
+}

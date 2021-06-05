@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
-import { saveAs } from "file-saver";
+import { saveAs } from "file-saver-es";
 import { Router } from '@angular/router';
 
 @Component({

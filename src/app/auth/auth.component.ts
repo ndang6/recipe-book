@@ -11,11 +11,13 @@ import { AuthResponseData, AuthService } from "./auth.service";
     styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
-    @ViewChild('email') emailInput: NgModel;
-    @ViewChild('password') passwordInput: NgModel;
-    isLoginMode = true;
-    isLoading = false;
-    error: string = null;
+    @ViewChild('authForm') form: NgForm
+    @ViewChild('email') emailInput: NgModel
+    @ViewChild('password') passwordInput: NgModel
+
+    isLoginMode = true
+    isLoading = false
+    error: string = null
 
     constructor(private authService: AuthService, private router: Router, private dataStorageService: DataStorageService){}
 
@@ -25,13 +27,12 @@ export class AuthComponent {
         this.passwordInput.reset()
     }
 
-    onSubmit(form: NgForm){
-        if(!form.valid) return;
+    onSubmit(){
+        if(!this.form.valid) return
 
-        const {email, password} = form.value;
+        const {email, password} = this.form.value
 
         let authObs: Observable<AuthResponseData>;
-
         this.isLoading = true;
 
         if(this.isLoginMode)
@@ -50,7 +51,7 @@ export class AuthComponent {
             this.isLoading = false;
         });
         
-        form.reset();
+        this.form.reset();
     }
 
     loginAsGuest(){

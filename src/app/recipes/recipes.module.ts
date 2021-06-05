@@ -16,6 +16,7 @@ import { CategoryFilterPipe } from "./recipe-list/categoryFilter.pipe";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NameFilterPipe } from "./recipe-list/nameFilter.pipe";
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgxPaginationModule,
     MatSlideToggleModule,
     FontAwesomeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
 })
 export class RecipesModule {}

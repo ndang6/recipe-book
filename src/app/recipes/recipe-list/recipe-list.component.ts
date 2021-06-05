@@ -31,6 +31,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   fullRecipesSubscription: Subscription
   isEditedSubscription: Subscription
 
+  isLoading = false
   error: string = null
   currentPage: number = 1
   itemsPerPage: number = 6
@@ -43,6 +44,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isLoading = true
     this.isAdmin = (this.authService.user.value.email === "admin@test.com") || (this.authService.user.value.email === "maica59aimable@gmail.com")
 
     this.recipesSubscription = this.recipeService.recipesChanged.subscribe(
@@ -52,6 +54,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         for(let recipe of this.recipes){
           if(recipe.category === 'dessert') this.numOfDesserts += 1
         }
+        this.isLoading = false
       }
     );
 

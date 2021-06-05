@@ -1,18 +1,26 @@
 <a 
     [ngClass]= "(recipe.category === 'dessert') ? 'list-group-item list-group-item-success clearfix' : 'list-group-item clearfix'"
     class="list-group-item clearfix" 
-    style="cursor: pointer; margin-bottom: 10px; border: none;"
+    style="cursor: pointer; margin-bottom: 10px; border: none; margin-left: -10px;"
     routerLink="{{index}}"
     routerLinkActive="active">
 
     <div class="row">
-        <div class="col-xs-8">
-            <h4 class="list-group-item-heading" style="font-weight: 500;">{{recipe.name}}</h4>
-            <p *ngIf="recipe.desc" class="list-group-item-text">{{recipe.desc}}</p>
-            <p *ngIf="!recipe.desc" class="list-group-item-text">Please add description!</p>
+        <div class="col-xs-9">
+            <p [ngStyle]="{'font-weight': nameFontWeight, 'font-size': nameFontSize}">{{recipe.name}}</p>
+            <p *ngIf="recipe.desc" [ngStyle]="{'font-size': descFontSize}">{{recipe.desc}}</p>
+            <p *ngIf="!recipe.desc" [ngStyle]="{'font-size': descFontSize}">Please add description!</p>
         </div>
-        <div class="col-xs-4">
-            <img *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt={{recipe.name}} class="img-responsive" style="max-height: 80px; border-radius: 50%;">
+        <div class="col-xs-3">
+            <div *ngIf="!isDoneLoading">
+                <mat-spinner [diameter]="30" style="margin-left: 20px; margin-bottom: 10px;"></mat-spinner>
+            </div>
+            <img 
+                (load)="onDoneLoading()"
+                (mouseover)="onMouseOver()"
+                (mouseleave)="onMouseLeave()"
+                *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt={{recipe.name}} class="img-responsive" 
+                [ngStyle]="{'height': height, 'width': width, 'border-radius': borderRadius}">
             <img *ngIf="!recipe.imagePath" src="https://vcunited.club/wp-content/uploads/2020/01/No-image-available-2.jpg" alt="no image" class="img-responsive" style="max-height: 80px; border-radius: 50%;">
         </div>
     </div>

@@ -15,6 +15,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { environment } from '../environments/environment';
     ShoppingListModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
+    MatTooltipModule
   ],
   providers: [
     ShoppingListService, 
