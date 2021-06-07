@@ -10,7 +10,7 @@
                         class="btn btn-success" 
                         style="margin-right: 5px;"
                         [disabled]="!recipeForm.valid">
-                        SAVE
+                        <span matTooltip="Please provide Name and Category">SAVE</span>
                     </button>
                     <button 
                         type="button" 
@@ -110,7 +110,8 @@
                             <textarea
                                 type="string"
                                 class="form-control"
-                                formControlName="step">
+                                formControlName="step"
+                                style="resize: none;">
                             </textarea>
                         </div>
                         <div class="col-xs-1">
