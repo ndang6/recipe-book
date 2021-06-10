@@ -10,22 +10,20 @@
     <div class="row">
         <div class="col-xs-12">
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="!categorySelected && nameSelected.length < 3">
-                Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts.
-                <button class="transparentButton hideRandomButton" (click)="onSelectRandom()" >
-                    <fa-icon [icon]="faQuestion" style="font-size: 15px;" matTooltip="Pick a random recipe"></fa-icon>
-                </button>
+                Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts
             </p>
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="categorySelected === 'dessert'">
-                Total {{numOfDesserts}} desserts.
+                Total {{numOfDesserts}} desserts
             </p>
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="categorySelected === 'main'">
-                Total {{recipes.length - numOfDesserts}} main dishes.
+                Total {{recipes.length - numOfDesserts}} main dishes
             </p>
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="nameSelected.length >= 3">
                 Search Result
             </p>
-            <!-- <p style="margin-top: 10px;">{{fullRecipes.length}} recipes.</p> -->
-            <p style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)">Unsaved Changes</p>
+            <p style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)">
+                Unsaved Changes
+            </p>
             
             <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
                 <div>
@@ -43,11 +41,13 @@
                         class="btn btn-primary" (click)="onShowJSON()" 
                         style="font-size: 15px;">
                         JSON
-                    </button>
-                    
+                    </button>             
                 </div>            
             </div>
             <div style="margin-bottom: 10px;">
+                <button class="transparentButton" (click)="onSelectRandom()" >
+                    <fa-icon [icon]="faQuestion" style="font-size: 22px;" matTooltip="Pick a random recipe"></fa-icon>
+                </button>
                 <button class="transparentButton" (click)="onSelectCategory('main')" >
                     <fa-icon [icon]="faUtensils" style="font-size: 22px;" matTooltip="Main dishes only"></fa-icon>
                 </button>
