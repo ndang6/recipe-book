@@ -20,7 +20,8 @@
                 (mouseover)="onMouseOver()"
                 (mouseleave)="onMouseLeave()"
                 *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt={{recipe.name}} class="img-responsive" 
-                [ngStyle]="{'height': height, 'width': width, 'border-radius': borderRadius}">
+                [ngStyle]="{'height': height, 'width': width, 'border-radius': borderRadius, 'min-height': '60px', 'min-width': 
+            '60px'}">
             <img *ngIf="!recipe.imagePath" src="https://vcunited.club/wp-content/uploads/2020/01/No-image-available-2.jpg" alt="no image" class="img-responsive" style="max-height: 80px; border-radius: 50%;">
         </div>
     </div>

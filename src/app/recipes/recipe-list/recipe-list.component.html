@@ -11,7 +11,7 @@
         <div class="col-xs-12">
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="!categorySelected && nameSelected.length < 3">
                 Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts.
-                <button class="transparentButton" (click)="onSelectRandom()" >
+                <button class="transparentButton hideRandomButton" (click)="onSelectRandom()" >
                     <fa-icon [icon]="faQuestion" style="font-size: 15px;" matTooltip="Pick a random recipe"></fa-icon>
                 </button>
             </p>

@@ -3,8 +3,11 @@
         <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
 
         <div class="navbar-header" style="margin-left: 20px; margin-right: 20px;">
-            <a routerLink="/recipes">
-                <img src="assets/images/logo.png" style="height: 100px; width: 100px; margin-top: -25px;">
+            <a routerLink="/recipes" style="text-decoration: none; cursor: pointer;">
+                <div style="display: flex;">
+                    <img src="assets/images/logo.jpg" style="height: 50px; width: 50px;">
+                    <p style="margin-top: 15px; font-size: 20px;">ng-recipe-book</p>
+                </div>             
             </a>
         </div>
        
