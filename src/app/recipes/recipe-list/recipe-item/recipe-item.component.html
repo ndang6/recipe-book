@@ -1,28 +1,36 @@
 <a 
-    [ngClass]= "(recipe.category === 'dessert') ? 'list-group-item list-group-item-success clearfix' : 'list-group-item clearfix'"
+    [ngClass]= "getAnchorClass()"
     class="list-group-item clearfix" 
     style="cursor: pointer; margin-bottom: 10px; border: none; margin-left: -10px;"
     routerLink="{{index}}"
-    routerLinkActive="active">
+    routerLinkActive="active"
+    (mouseover)="onMouseOver()"
+    (mouseleave)="onMouseLeave()">
 
     <div class="row">
-        <div class="col-xs-9">
-            <p [ngStyle]="{'font-weight': nameFontWeight, 'font-size': nameFontSize}">{{recipe.name}}</p>
-            <p *ngIf="recipe.desc" [ngStyle]="{'font-size': descFontSize}">{{recipe.desc}}</p>
-            <p *ngIf="!recipe.desc" [ngStyle]="{'font-size': descFontSize}">Please add description!</p>
-        </div>
         <div class="col-xs-3">
             <div *ngIf="!isDoneLoading">
                 <mat-spinner [diameter]="30" style="margin-left: 20px; margin-bottom: 10px;"></mat-spinner>
             </div>
             <img 
-                (load)="onDoneLoading()"
-                (mouseover)="onMouseOver()"
-                (mouseleave)="onMouseLeave()"
+                (load)="onDoneLoading()"             
                 *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt={{recipe.name}} class="img-responsive" 
-                [ngStyle]="{'height': height, 'width': width, 'border-radius': borderRadius, 'min-height': '60px', 'min-width': 
-            '60px'}">
+                [ngStyle]="{'border-radius': borderRadius, 'max-height': '50px'}">
             <img *ngIf="!recipe.imagePath" src="https://vcunited.club/wp-content/uploads/2020/01/No-image-available-2.jpg" alt="no image" class="img-responsive" style="max-height: 80px; border-radius: 50%;">
+        </div>
+        <div class="col-xs-9">
+            <div style="display: flex; justify-content: space-between;">
+                <p [ngStyle]="{'font-weight': nameFontWeight, 'font-size': nameFontSize}">{{recipe.name}}</p>
+                <fa-icon 
+                    *ngIf="recipe.category === 'dessert'"
+                    [icon]="faTag" style="font-size: 16px;" 
+                    matTooltip="Dessert">
+                </fa-icon>
+            </div>
+            <div>
+                <p *ngIf="recipe.desc" [ngStyle]="{'font-size': descFontSize}">{{description}}</p>
+                <p *ngIf="!recipe.desc" [ngStyle]="{'font-size': descFontSize}">Please add description!</p>
+            </div>         
         </div>
     </div>
 </a>

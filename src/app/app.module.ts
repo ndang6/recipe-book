@@ -16,24 +16,30 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
+import { ClockComponent } from './clock/clock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AuthComponent,
+    HomeComponent,
+    ClockComponent,
   ],
   imports: [
-    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     RecipesModule,
     ShoppingListModule,
     SharedModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,  
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
-    MatTooltipModule
+    MatTooltipModule,
+    FontAwesomeModule
   ],
   providers: [
     ShoppingListService, 

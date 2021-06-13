@@ -12,11 +12,13 @@
   -o-background-size: cover;
   background-size: cover;
   height: max-content;
+  min-height: 800px;
 }
 
 .background2 {
   background-color: rgba(0, 0, 0, 0.4);
   height: max-content;
+  min-height: 800px;
 }
 
 @media screen and (max-width: 768px) {

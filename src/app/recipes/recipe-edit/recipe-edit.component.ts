@@ -44,14 +44,14 @@ export class RecipeEditComponent implements OnInit {
     )
   }
 
-  initForm(){
+  initForm() {
     let recipeName = '';
     let recipeCategory = '';
     let recipeImagePath = '';
     let recipeDescription = '';
     let recipeIngredients = new FormArray([]);
     let recipeInstructions = new FormArray([]);
-
+    
     if(this.editMode){
       const recipe = this.recipeService.getRecipeById(this.id);
       const imageURL = recipe.imagePath
@@ -83,7 +83,6 @@ export class RecipeEditComponent implements OnInit {
       }
     }
 
-    // Initialize Form
     this.recipeForm = new FormGroup({
       'name': new FormControl(recipeName, Validators.required),
       'category': new FormControl(recipeCategory, Validators.required),

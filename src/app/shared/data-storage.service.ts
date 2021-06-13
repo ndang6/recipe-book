@@ -19,6 +19,9 @@ export class DataStorageService {
         // returns an observable - good practice
         return this.http.get<Recipe[]>("https://recipe-book-9d0ab-default-rtdb.firebaseio.com/recipes.json")
             .pipe(
+                tap(recipes => {
+                    recipes = this.shuffleArray(recipes)
+                }),
                 map(recipes => {
                     let index = 0
                     recipes = recipes.map(recipe => {
@@ -32,4 +35,21 @@ export class DataStorageService {
                 })
             )
     }
+
+    shuffleArray = (array: Recipe[]) => {
+        let m: number = array.length, t: Recipe, i: number;
+      
+        // While there remain elements to shuffle
+        while (m) {
+          // Pick a remaining element…
+          i = Math.floor(Math.random() * m--);
+      
+          // And swap it with the current element.
+          t = array[m];
+          array[m] = array[i];
+          array[i] = t;
+        }
+      
+        return array;
+      }
 }

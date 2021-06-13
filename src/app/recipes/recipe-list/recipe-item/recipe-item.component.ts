@@ -1,37 +1,59 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { faTag } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css']
 })
-export class RecipeItemComponent { 
+export class RecipeItemComponent implements OnInit{
+  faTag = faTag
+
   @Input() 
   recipe: Recipe;
 
   @Input()
   index: number;
-  height: string = '60px'
-  width: string = '60px'
-  borderRadius: string = '50%'
+
+  borderRadius: string = '10%'
   nameFontSize: string = '16px'
   nameFontWeight: string = '500'
   descFontSize: string = '13px'
 
   isDoneLoading = false
+  description: string = ''
+  showDesc = false
+
+  ngOnInit(): void {
+    this.description = this.recipe.desc
+    this.resizeText(this.description)
+  }
+  
+  resizeText(description: string){
+    const size = description.length
+
+    if(size > 34){
+      this.description = description.substring(0, 34) + ' ...'
+    }
+  }
 
   onDoneLoading() {
     this.isDoneLoading = true
   }
 
   onMouseOver(){
-    this.borderRadius = '10%'
-    this.nameFontSize = '20px'
+    this.description = this.recipe.desc
   }
 
   onMouseLeave(){ 
-    this.borderRadius = '50%'
-    this.nameFontSize = '16px'
+    this.resizeText(this.description)
+  }
+
+  getAnchorClass(){
+    return (this.recipe.category === 'dessert') 
+      ? 'list-group-item list-group-item-success clearfix' 
+      : 'list-group-item clearfix'
   }
 }

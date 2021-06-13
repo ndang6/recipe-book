@@ -48,6 +48,7 @@ export class RecipeService {
     }
 
     updateRecipe(index: number, newRecipe: Recipe){
+        newRecipe.id = this.recipes[index].id
         this.recipes[index] = newRecipe
         this.recipesChanged.next(this.recipes.slice())
         this.isEdited.next(true)

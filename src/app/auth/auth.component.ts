@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { DataStorageService } from "../shared/data-storage.service";
 import { AuthResponseData, AuthService } from "./auth.service";
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
     selector: 'app-auth',
@@ -11,6 +12,8 @@ import { AuthResponseData, AuthService } from "./auth.service";
     styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
+    faLinkedin = faLinkedin
+
     @ViewChild('authForm') form: NgForm
     @ViewChild('email') emailInput: NgModel
     @ViewChild('password') passwordInput: NgModel
@@ -45,7 +48,7 @@ export class AuthComponent {
         authObs.subscribe(res => {
             this.dataStorageService.fetchRecipes().subscribe(res => {
                 this.isLoading = false;
-                this.router.navigate(['/recipes']);
+                this.router.navigate(['/home']);
             });       
         }, errMessage => {
             this.error = errMessage;
@@ -68,5 +71,9 @@ export class AuthComponent {
             this.error = errMessage;
             this.isLoading = false;
         });
+    }
+
+    goToLink(url: string){
+        window.open(url, "_blank");
     }
 }

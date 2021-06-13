@@ -1,8 +1,18 @@
 <div class="row" *ngIf="shortRecipes">
   <div class="col-xs-12">
-    <button (click)="onClick()" style="position: absolute; z-index: 10; right: 0; margin-right: 55px;"><span class="glyphicon glyphicon-download-alt"></span></button>
-    <button (click)="onClose()" style="position: absolute; z-index: 10; right: 0; margin-right: 15px;"><span class="glyphicon glyphicon-remove"></span></button>
-    <pre style="position: relative">{{shortRecipes | json}}</pre>
+
+    <button 
+      (click)="onClick()" style="position: absolute; z-index: 10; right: 0; margin-right: 75px; margin-top: 5px; font-size: 20px; color: green"
+      matTooltip="Download">
+      <span class="glyphicon glyphicon-download-alt"></span>
+    </button>
+    <button 
+      (click)="onClose()" style="position: absolute; z-index: 10; right: 0; margin-right: 35px; margin-top: 5px; font-size: 20px; color: red"
+      matTooltip="Close">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+
+    <pre style="position: relative; max-height: 800px; margin-bottom: -10px;">{{shortRecipes | json}}</pre>
   </div>
 </div>
 

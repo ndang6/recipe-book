@@ -9,14 +9,14 @@
 }
 
 .alert-box {
-  font-size: 20px;
+  font-size: 22px;
   position: fixed;
-  top: 30vh;
+  top: 20vh;
   left: 40vw;
   width: 30vw;
-  padding: 16px;
+  padding: 10px;
   z-index: 100;
-  background: white;
+  background-color: floralwhite;
   box-shadow: 0 2px 8px rbga(0, 0, 0, 0.26);
 }
 

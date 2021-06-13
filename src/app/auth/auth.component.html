@@ -1,5 +1,12 @@
-<div class="row" style="margin-top: 50px; display: flex; justify-content: center; height: 100vh">
+<div class="row" style="padding-top: 120px; display: flex; justify-content: center; height: 100vh">
     <div class="col-xs-10 col-md-4">
+        <a
+            (click)="goToLink('https://www.linkedin.com/in/ndang6/')"
+            style="cursor: pointer;"
+            matTooltip="Go to Author's LinkedIn home page">
+            <fa-icon [icon]="faLinkedin" style="font-size: 30px;"></fa-icon>
+        </a>
+        <hr/>
         <div class="alert alert-danger" *ngIf="error">
             <p>{{ error }}</p>
         </div>

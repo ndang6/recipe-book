@@ -54,6 +54,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         for(let recipe of this.recipes){
           if(recipe.category === 'dessert') this.numOfDesserts += 1
         }
+
         this.isLoading = false
       }
     );
@@ -101,7 +102,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   onSaveData(){
     if(this.isAdmin){
-      this.error = "Save successfully"
+      this.error = "Save successfully!"
       this.dataStorageService.storeRecipes().subscribe()   
     }
     else
@@ -121,6 +122,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   onSelectRandom(){
+    this.getRecipes()
+
     const randomNum = Math.round(Math.random() * (this.recipes.length-1) )
     this.currentPage = (Math.floor((randomNum / this.itemsPerPage)) + 1)
 
