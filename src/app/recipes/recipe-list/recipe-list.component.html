@@ -21,8 +21,10 @@
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="nameSelected.length >= 3">
                 Search Result
             </p>
-            <p style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)">
-                Unsaved Changes
+            <p 
+                style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)"
+                matTooltip="You can undo the changes by clicking All Recipes">
+                *** Unsaved Changes ***
             </p>
             
             <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
@@ -55,9 +57,17 @@
                     <fa-icon [icon]="faIceCream" style="font-size: 22px;" matTooltip="Desserts only"></fa-icon>
                 </button>
                 <input
+                    #searchInput
                     (input)="search($event)" 
                     placeholder="Search..." 
                     style="padding: 3px; font-size: 15px; width: 140px; border: none; margin-left: 3px">
+                <span
+                    *ngIf="isSearching" 
+                    (click)="onClear(searchInput)" 
+                    class="glyphicon glyphicon-remove" 
+                    style="color: red; margin-left: 10px;"
+                    matTooltip="Clear Search Result">
+                </span>
             </div>
                       
             <app-recipe-item 

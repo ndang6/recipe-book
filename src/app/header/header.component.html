@@ -22,7 +22,7 @@
                 <!-- <li routerLinkActive="active"><a style="font-size: 16px;" routerLink="/shopping-list" *ngIf="isAuthenticated">Shopping List</a></li> -->
             </ul>
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" *ngIf="isAuthenticated">
                 <app-clock></app-clock>
             </ul>
 

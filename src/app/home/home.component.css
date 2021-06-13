@@ -1,6 +1,36 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
+  .smallscreen {
+    width: 90% !important;
+  }
+
+  .smallscreen > p {
+    font-size: 35px !important;
+  }
+
+  .smallscreen .icon {
+    font-size: 50px !important;
+  }
+
+  .smallscreen2 {
+    width: 60% !important;
+  }
+
+  .smallscreen2 > a > p {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .smallscreen {
+    width: 90% !important;
+  }
+
   .smallscreen > p {
     font-size: 25px !important;
+  }
+
+  .smallscreen .icon {
+    font-size: 50px !important;
   }
 
   .smallscreen2 {

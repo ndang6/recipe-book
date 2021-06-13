@@ -10,7 +10,9 @@ export class AppComponent implements OnInit{
   backgroundImgList = [
     'url(\'../assets/images/background0.jpg\')', 
     'url(\'../assets/images/background1.jpg\')', 
-    'url(\'../assets/images/background2.jpg\')' 
+    'url(\'../assets/images/background2.jpg\')', 
+    'url(\'../assets/images/background3.jpg\')', 
+    'url(\'../assets/images/background4.jpg\')', 
   ]
 
   index = 0

@@ -12,9 +12,13 @@
   visibility: hidden;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 790px) {
+  .navbar-header p {
+    font-size: 20px !important;
+  }
+
   .navbar-default {
-    display: none;
+    display: none !important;
   }
 
   .smallscreen {

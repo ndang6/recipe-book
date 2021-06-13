@@ -48,7 +48,7 @@ export class AuthComponent {
         authObs.subscribe(res => {
             this.dataStorageService.fetchRecipes().subscribe(res => {
                 this.isLoading = false;
-                this.router.navigate(['/home']);
+                this.router.navigate(['/recipes']);
             });       
         }, errMessage => {
             this.error = errMessage;

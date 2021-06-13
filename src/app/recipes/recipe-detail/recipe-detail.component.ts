@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faLevelDownAlt, faLevelUpAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -13,12 +13,20 @@ import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 export class RecipeDetailComponent implements OnInit {
   faEdit = faEdit
   faTrashAlt = faTrashAlt
+  faLevelDownAlt = faLevelDownAlt
+  faLevelUpAlt = faLevelUpAlt
 
+  @ViewChild('editButton') editButton: ElementRef
+
+  recipeImagePositionAbove = true
   recipe: Recipe;
   id: number;
   videoUrl: SafeResourceUrl = null;
 
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer) {}
+  constructor(
+    private recipeService: RecipeService, 
+    private route: ActivatedRoute, 
+    private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -67,5 +75,14 @@ export class RecipeDetailComponent implements OnInit {
 
   onClose(){
     this.router.navigate(['/recipes']);
+  }
+
+  changeImagePosition(){
+    this.recipeImagePositionAbove = !this.recipeImagePositionAbove
+  }
+
+  closeEditButton(){
+    if(this.editButton.nativeElement.classList.contains('open'))
+      this.editButton.nativeElement.click()
   }
 }

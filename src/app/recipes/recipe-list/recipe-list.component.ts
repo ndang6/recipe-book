@@ -32,6 +32,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   isEditedSubscription: Subscription
 
   isLoading = false
+  isSearching = false
   error: string = null
   currentPage: number = 1
   itemsPerPage: number = 6
@@ -131,7 +132,14 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   search(event: any){
+    this.isSearching = true
     this.currentPage = 1   
     this.nameSelected = event.target.value
+  }
+
+  onClear(searchInput: any){
+    this.isSearching = false
+    this.nameSelected = ''
+    searchInput.value = ''
   }
 }
