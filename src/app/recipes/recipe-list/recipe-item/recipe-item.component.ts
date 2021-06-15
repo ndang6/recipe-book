@@ -11,13 +11,9 @@ import { faTag } from '@fortawesome/free-solid-svg-icons';
 export class RecipeItemComponent implements OnInit{
   faTag = faTag
 
-  @Input() 
-  recipe: Recipe;
+  @Input() recipe: Recipe
+  @Input() index: number
 
-  @Input()
-  index: number;
-
-  borderRadius: string = '10%'
   nameFontSize: string = '16px'
   nameFontWeight: string = '500'
   descFontSize: string = '13px'
@@ -51,9 +47,9 @@ export class RecipeItemComponent implements OnInit{
     this.resizeText(this.description)
   }
 
-  getAnchorClass(){
-    return (this.recipe.category === 'dessert') 
-      ? 'list-group-item list-group-item-success clearfix' 
-      : 'list-group-item clearfix'
-  }
+  // getAnchorClass(){
+  //   return (this.recipe.category === 'dessert') 
+  //     ? 'list-group-item list-group-item-success clearfix' 
+  //     : 'list-group-item clearfix'
+  // }
 }

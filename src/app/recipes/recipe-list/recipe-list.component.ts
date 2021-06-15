@@ -5,7 +5,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { faIceCream, faUtensils, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faIceCream, faUtensils, faQuestion, faToggleOn, faToggleOff, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-recipe-list',
@@ -16,7 +17,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   faIceCream = faIceCream
   faUtensils = faUtensils
   faQuestion = faQuestion
+  faToggleOn = faToggleOn
+  faToggleOff = faToggleOff
+  faInfo = faInfo
 
+  pagination: boolean = false
   categorySelected: string = ''
   nameSelected: string = ''
 
@@ -35,7 +40,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   isSearching = false
   error: string = null
   currentPage: number = 1
-  itemsPerPage: number = 6
+  itemsPerPage: number = 5
 
   constructor(
     private recipeService: RecipeService, 
@@ -141,5 +146,19 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.isSearching = false
     this.nameSelected = ''
     searchInput.value = ''
+  }
+
+  drop(event: CdkDragDrop<Recipe[]>) {
+    if (event.previousContainer === event.container) {
+      console.log('A')
+      event.previousIndex += (this.currentPage - 1) * this.itemsPerPage
+      event.currentIndex += (this.currentPage - 1) * this.itemsPerPage
+      moveItemInArray(event.container.data, event.previousIndex , event.currentIndex);
+    }
+  }
+
+  togglePagination() {
+    this.pagination = !this.pagination
+    this.getRecipes()
   }
 }

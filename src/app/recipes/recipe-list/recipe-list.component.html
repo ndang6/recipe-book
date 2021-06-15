@@ -8,7 +8,7 @@
     <app-alert [message]="error" *ngIf="error" (close)="onClose()"></app-alert>
     
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-11">
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="!categorySelected && nameSelected.length < 3">
                 Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts
             </p>
@@ -24,7 +24,7 @@
             <p 
                 style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)"
                 matTooltip="You can undo the changes by clicking All Recipes">
-                *** Unsaved Changes ***
+                * Unsaved Changes *
             </p>
             
             <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
@@ -41,48 +41,83 @@
                     <button 
                         *ngIf="isAdmin"
                         class="btn btn-primary" (click)="onShowJSON()" 
-                        style="font-size: 15px;">
+                        style="font-size: 15px; margin-right: 3px;">
                         JSON
-                    </button>             
+                    </button>           
                 </div>            
             </div>
-            <div style="margin-bottom: 10px;">
-                <button class="transparentButton" (click)="onSelectRandom()" >
+            <div style="margin-bottom: 10px; display: flex;">
+                <button *ngIf="pagination" class="transparentButton" (click)="togglePagination()">
+                    <fa-icon [icon]="faToggleOn" style="font-size: 22px; color: green" matTooltip="Pagination is ON"></fa-icon>
+                </button>
+                <button *ngIf="!pagination" class="transparentButton" (click)="togglePagination()">
+                    <fa-icon [icon]="faToggleOff" style="font-size: 22px; color: red;" matTooltip="Pagination is OFF"></fa-icon>
+                </button>
+                <button *ngIf="pagination" class="transparentButton" (click)="onSelectRandom()" >
                     <fa-icon [icon]="faQuestion" style="font-size: 22px;" matTooltip="Pick a random recipe"></fa-icon>
                 </button>
-                <button class="transparentButton" (click)="onSelectCategory('main')" >
+                <button *ngIf="pagination" class="transparentButton" (click)="onSelectCategory('main')" >
                     <fa-icon [icon]="faUtensils" style="font-size: 22px;" matTooltip="Main dishes only"></fa-icon>
                 </button>
-                <button class="transparentButton" (click)="onSelectCategory('dessert')">
+                <button *ngIf="pagination" class="transparentButton" (click)="onSelectCategory('dessert')">
                     <fa-icon [icon]="faIceCream" style="font-size: 22px;" matTooltip="Desserts only"></fa-icon>
                 </button>
-                <input
-                    #searchInput
-                    (input)="search($event)" 
-                    placeholder="Search..." 
-                    style="padding: 3px; font-size: 15px; width: 140px; border: none; margin-left: 3px">
-                <span
-                    *ngIf="isSearching" 
-                    (click)="onClear(searchInput)" 
-                    class="glyphicon glyphicon-remove" 
-                    style="color: red; margin-left: 10px;"
-                    matTooltip="Clear Search Result">
-                </span>
+                
+                <div *ngIf="pagination">
+                    <input
+                        #searchInput
+                        (input)="search($event)" 
+                        placeholder="Search ..." 
+                        style="padding: 3px; font-size: 18px; width: 140px; border: none; margin-left: 5px">
+                    <span
+                        *ngIf="isSearching" 
+                        (click)="onClear(searchInput)" 
+                        class="glyphicon glyphicon-remove" 
+                        style="color: red; margin-left: 10px;"
+                        matTooltip="Clear Search Result">
+                    </span>
+                </div>
+                
+                <div style="margin-top: 8px;">
+                    <p 
+                        *ngIf="!pagination"
+                        style="font-size: 15px; margin-left: 10px">
+                        Let's drag recipes around!
+                    </p> 
+                </div>                
             </div>
-                      
-            <app-recipe-item 
-                *ngFor="let recipeItem of recipes 
-                    | categoryFilter: categorySelected: 'category' 
-                    | nameFilter: nameSelected: 'name'
-                    | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index"
-                [recipe]="recipeItem"
-                [index] = "recipeItem.id">
-            </app-recipe-item>
+             
+            <div *ngIf="pagination">
+                <app-recipe-item
+                    *ngFor="let recipeItem of recipes 
+                        | categoryFilter: categorySelected: 'category' 
+                        | nameFilter: nameSelected: 'name'
+                        | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index"
+                    [recipe]="recipeItem"
+                    [index] = "recipeItem.id">
+                </app-recipe-item>
+            </div>
 
             <pagination-controls
+                *ngIf="pagination"
                 (pageChange)="currentPage = $event"
                 class="my-pagination">
             </pagination-controls>            
+
+            <div
+                *ngIf="!pagination"
+                cdkDropList
+                [cdkDropListData]="recipes"
+                (cdkDropListDropped)="drop($event)">
+                <app-recipe-item
+                    cdkDrag
+                    *ngFor="let recipeItem of recipes
+                        | categoryFilter: categorySelected: 'category' 
+                        | nameFilter: nameSelected: 'name'"
+                    [recipe]="recipeItem"
+                    [index] = "recipeItem.id">
+                </app-recipe-item>
+            </div>
         </div>
     </div>
 </div>

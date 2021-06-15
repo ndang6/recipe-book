@@ -17,6 +17,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NameFilterPipe } from "./recipe-list/nameFilter.pipe";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSlideToggleModule,
     FontAwesomeModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DragDropModule
   ],
 })
 export class RecipesModule {}

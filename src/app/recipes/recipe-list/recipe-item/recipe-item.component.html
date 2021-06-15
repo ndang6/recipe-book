@@ -1,29 +1,28 @@
-<a 
-    [ngClass]= "getAnchorClass()"
-    class="list-group-item clearfix" 
-    style="cursor: pointer; margin-bottom: 10px; border: none; margin-left: -10px;"
+<div
+    style="cursor: pointer; margin-bottom: 20px; border: none; margin-left: -5px;"
     routerLink="{{index}}"
     routerLinkActive="active"
     (mouseover)="onMouseOver()"
     (mouseleave)="onMouseLeave()">
 
-    <div class="row">
-        <div class="col-xs-3">
+    <div class="row" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.32), 0 1px 4px rgba(0, 0, 0, 0.24);">
+        <div class="col-xs-3 mediumScreen" style="padding-top: 10px;">
             <div *ngIf="!isDoneLoading">
                 <mat-spinner [diameter]="30" style="margin-left: 20px; margin-bottom: 10px;"></mat-spinner>
             </div>
-            <img 
+            <img
                 (load)="onDoneLoading()"             
                 *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt={{recipe.name}} class="img-responsive" 
-                [ngStyle]="{'border-radius': borderRadius, 'max-height': '50px'}">
+                style="border-radius: 50%; min-height: 40px; min-width: 30px; max-height: 70px;" />
             <img *ngIf="!recipe.imagePath" src="https://vcunited.club/wp-content/uploads/2020/01/No-image-available-2.jpg" alt="no image" class="img-responsive" style="max-height: 80px; border-radius: 50%;">
         </div>
-        <div class="col-xs-9">
-            <div style="display: flex; justify-content: space-between;">
+        <div class="col-lg-9 col-md-12 col-xs-9" style="padding-top: 10px;">
+            <div style="display: flex;">
                 <p [ngStyle]="{'font-weight': nameFontWeight, 'font-size': nameFontSize}">{{recipe.name}}</p>
                 <fa-icon 
                     *ngIf="recipe.category === 'dessert'"
-                    [icon]="faTag" style="font-size: 16px;" 
+                    [icon]="faTag" style="font-size: 16px;"
+                    style="color: pink; margin-left: 10px;" 
                     matTooltip="Dessert">
                 </fa-icon>
             </div>
@@ -33,5 +32,7 @@
             </div>         
         </div>
     </div>
-</a>
+</div>
+
+
  
