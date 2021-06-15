@@ -137,6 +137,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   search(event: any){
+    if(event.target.value.length == 0){
+      this.isSearching = false
+      return;
+    }
+
     this.isSearching = true
     this.currentPage = 1   
     this.nameSelected = event.target.value

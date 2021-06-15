@@ -8,7 +8,7 @@
     <app-alert [message]="error" *ngIf="error" (close)="onClose()"></app-alert>
     
     <div class="row">
-        <div class="col-xs-11">
+        <div class="col-xs-12">
             <p style="margin-top: 10px; font-size: 15px;" *ngIf="!categorySelected && nameSelected.length < 3">
                 Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts
             </p>
@@ -54,26 +54,26 @@
                     <fa-icon [icon]="faToggleOff" style="font-size: 22px; color: red;" matTooltip="Pagination is OFF"></fa-icon>
                 </button>
                 <button *ngIf="pagination" class="transparentButton" (click)="onSelectRandom()" >
-                    <fa-icon [icon]="faQuestion" style="font-size: 22px;" matTooltip="Pick a random recipe"></fa-icon>
+                    <fa-icon [icon]="faQuestion" style="font-size: 20px;" matTooltip="Pick a random recipe"></fa-icon>
                 </button>
                 <button *ngIf="pagination" class="transparentButton" (click)="onSelectCategory('main')" >
-                    <fa-icon [icon]="faUtensils" style="font-size: 22px;" matTooltip="Main dishes only"></fa-icon>
+                    <fa-icon [icon]="faUtensils" style="font-size: 20px;" matTooltip="Main dishes only"></fa-icon>
                 </button>
                 <button *ngIf="pagination" class="transparentButton" (click)="onSelectCategory('dessert')">
-                    <fa-icon [icon]="faIceCream" style="font-size: 22px;" matTooltip="Desserts only"></fa-icon>
+                    <fa-icon [icon]="faIceCream" style="font-size: 20px;" matTooltip="Desserts only"></fa-icon>
                 </button>
                 
-                <div *ngIf="pagination">
+                <div *ngIf="pagination" style="display: flex;">
                     <input
                         #searchInput
                         (input)="search($event)" 
                         placeholder="Search ..." 
-                        style="padding: 3px; font-size: 18px; width: 140px; border: none; margin-left: 5px">
+                        style="padding: 3px; font-size: 14px; width: 140px; border: none; margin-left: 5px">
                     <span
                         *ngIf="isSearching" 
                         (click)="onClear(searchInput)" 
                         class="glyphicon glyphicon-remove" 
-                        style="color: red; margin-left: 10px;"
+                        style="color: red; margin-left: 5px; margin-top: 5px;"
                         matTooltip="Clear Search Result">
                     </span>
                 </div>

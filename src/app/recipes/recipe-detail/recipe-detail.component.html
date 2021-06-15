@@ -23,7 +23,7 @@
         </div>
 
         <ul class="list-group" (click)="closeEditButton()">
-            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients" style="background-color: white; font-size: 16px;">
+            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients" style="background-color: white; font-size: 13px;">
                 {{ ingredient.name }} - {{ ingredient.amount }} {{ ingredient.unit }}
             </li>
         </ul>
@@ -78,7 +78,7 @@
         
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let instruction of recipe.instructions; let i = index" style="background-color: white; font-size: 16px;">
-                Step {{i + 1}} - {{ instruction.step }} 
+                {{i + 1}}. {{ instruction.step }} 
             </li>
         </ul>
 
