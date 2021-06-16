@@ -46,11 +46,11 @@
                     </button>           
                 </div>            
             </div>
-            <div style="margin-bottom: 10px; display: flex; margin-left: -5px;">
-                <button *ngIf="pagination" class="transparentButton" (click)="togglePagination()">
-                    <fa-icon [icon]="faToggleOn" style="font-size: 22px; color: green" matTooltip="Pagination is ON"></fa-icon>
+            <div style="margin-bottom: 10px; display: flex;">
+                <button *ngIf="pagination" class="transparentButton" (click)="togglePagination()" style="margin-left: -5px">
+                    <fa-icon [icon]="faToggleOn" style="font-size: 22px; color: green;" matTooltip="Pagination is ON"></fa-icon>
                 </button>
-                <button *ngIf="!pagination" class="transparentButton" (click)="togglePagination()">
+                <button *ngIf="!pagination" class="transparentButton" (click)="togglePagination()" style="margin-left: -5px">
                     <fa-icon [icon]="faToggleOff" style="font-size: 22px; color: red;" matTooltip="Pagination is OFF"></fa-icon>
                 </button>
                 <button *ngIf="pagination" class="transparentButton" (click)="onSelectRandom()" >

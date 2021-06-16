@@ -14,4 +14,13 @@
   .row .col-xs-4 .smallscreen2 {
     display: inline;
   }
+
+  .smallText {
+    font-size: 13px !important;
+    color: brown;
+  }
+
+  .col-xs-8 .list-group-item {
+    width: 100% !important;
+  }
 }

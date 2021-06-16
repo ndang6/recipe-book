@@ -1,4 +1,4 @@
-<div
+<div    
     class="phoneScreen"
     style="cursor: pointer; margin-bottom: 20px; border: none;"
     routerLink="{{index}}"
@@ -6,7 +6,7 @@
     (mouseover)="onMouseOver()"
     (mouseleave)="onMouseLeave()">
 
-    <div class="row" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.32), 0 1px 4px rgba(0, 0, 0, 0.24);">
+    <div class="row" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.32), 0 1px 4px rgba(0, 0, 0, 0.24);" id="myDiv" tabindex="1">
         <div class="col-xs-3 mediumScreen" style="padding-top: 10px;">
             <div *ngIf="!isDoneLoading">
                 <mat-spinner [diameter]="30" style="margin-left: 20px; margin-bottom: 10px;"></mat-spinner>

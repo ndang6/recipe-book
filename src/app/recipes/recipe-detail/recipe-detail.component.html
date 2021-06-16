@@ -3,7 +3,7 @@
         <div 
             style="background-color: rgba(0, 0, 0, 0.2); margin-bottom: 20px;"
             matTooltip="Recipe Description">
-            <p style="font-size: 16px; color: white; text-align: center; padding: 4px">
+            <p class="smallText" style="font-size: 16px; color: white; text-align: center; padding: 4px">
                 {{recipe.desc}}
             </p>
         </div>
@@ -12,7 +12,7 @@
             <button           
                 type="button" 
                 class="btn btn-primary" 
-                style="font-size: 16px; margin-bottom: 5px; pointer-events: none;">
+                style="font-size: 14px; margin-bottom: 5px; pointer-events: none;">
                 Ingredients
             </button>
         </div>      
@@ -31,7 +31,10 @@
         </div>
 
         <ul class="list-group" (click)="closeEditButton()">
-            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients" style="background-color: white; font-size: 13px;">
+            <li 
+                class="list-group-item smallText" 
+                *ngFor="let ingredient of recipe.ingredients" 
+                style="background-color: white; font-size: 16px">
                 {{ ingredient.name }} - {{ ingredient.amount }} {{ ingredient.unit }}
             </li>
         </ul>
