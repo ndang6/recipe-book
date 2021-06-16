@@ -155,7 +155,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   drop(event: CdkDragDrop<Recipe[]>) {
     if (event.previousContainer === event.container) {
-      console.log('A')
       event.previousIndex += (this.currentPage - 1) * this.itemsPerPage
       event.currentIndex += (this.currentPage - 1) * this.itemsPerPage
       moveItemInArray(event.container.data, event.previousIndex , event.currentIndex);

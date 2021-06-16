@@ -1,5 +1,6 @@
 <div
-    style="cursor: pointer; margin-bottom: 20px; border: none; margin-left: 10px;"
+    class="phoneScreen"
+    style="cursor: pointer; margin-bottom: 20px; border: none;"
     routerLink="{{index}}"
     routerLinkActive="active"
     (mouseover)="onMouseOver()"
@@ -13,7 +14,7 @@
             <img
                 (load)="onDoneLoading()"             
                 *ngIf="recipe.imagePath" src={{recipe.imagePath}} alt={{recipe.name}} class="img-responsive" 
-                style="border-radius: 50%; min-height: 40px; min-width: 30px; max-height: 70px;" />
+                style="border-radius: 50%; min-height: 40px; min-width: 30px; max-height: 60px;" />
             <img *ngIf="!recipe.imagePath" src="https://vcunited.club/wp-content/uploads/2020/01/No-image-available-2.jpg" alt="no image" class="img-responsive" style="max-height: 80px; border-radius: 50%;">
         </div>
         <div class="col-lg-9 col-md-12 col-xs-9" style="padding-top: 10px;">

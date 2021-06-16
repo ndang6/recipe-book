@@ -1,13 +1,21 @@
 <div class="row" *ngIf="recipe.name">
     <div class="col-xs-4">
         <div 
-            style="background-color: rgba(0, 0, 0, 0.2);"
+            style="background-color: rgba(0, 0, 0, 0.2); margin-bottom: 20px;"
             matTooltip="Recipe Description">
             <p style="font-size: 16px; color: white; text-align: center; padding: 4px">
                 {{recipe.desc}}
             </p>
         </div>
-        <hr/>
+
+        <div class="smallscreen2">
+            <button           
+                type="button" 
+                class="btn btn-primary" 
+                style="font-size: 16px; margin-bottom: 5px; pointer-events: none;">
+                Ingredients
+            </button>
+        </div>      
         <div #editButton class="btn-group smallscreen" appDropDown style="margin-bottom: 5px;">
             <button
                 type="button"
@@ -33,19 +41,21 @@
             </li>
         </ul>
     </div>
+
     <div class="col-xs-8" (click)="closeEditButton()">
         <span 
             (click)="onClose()" 
             class="glyphicon glyphicon-remove" 
-            style="float: right; font-size: 20px; color: red; cursor: pointer; right: 0;"
+            style="float: right; font-size: 20px; color: red; cursor: pointer; right: 0; z-index: 10;"
             matTooltip="Close recipe">
         </span>
 
         <div style="margin-bottom: 25px;">
             <a 
-                class="list-group-item clearfix" 
-                style="border: none; font-size: 34px; text-align: center; width: fit-content; margin: auto; margin-bottom: 10px; pointer-events: none; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
-                routerLinkActive="active">{{recipe.name}}
+                class="list-group-item" 
+                style="border: none; font-size: 34px; text-align: center; margin: auto; margin-bottom: 10px; pointer-events: none; 
+                       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; width: fit-content; line-height: 1;">
+                {{recipe.name}}
             </a>   
         </div>       
         

@@ -8,4 +8,8 @@
   .mediumScreen {
     display: inline;
   }
+
+  .phoneScreen {
+    margin-right: 70px;
+  }
 }

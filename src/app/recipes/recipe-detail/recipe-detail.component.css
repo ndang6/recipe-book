@@ -2,12 +2,16 @@
   padding: 15px;
 }
 
+.row .col-xs-4 .smallscreen2 {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .row .col-xs-4 .smallscreen {
-    visibility: hidden;
+    display: none;
   }
 
-  .col-xs-8 {
-    margin-top: 40px;
+  .row .col-xs-4 .smallscreen2 {
+    display: inline;
   }
 }

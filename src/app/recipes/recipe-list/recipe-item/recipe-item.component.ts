@@ -30,8 +30,8 @@ export class RecipeItemComponent implements OnInit{
   resizeText(description: string){
     const size = description.length
 
-    if(size > 34){
-      this.description = description.substring(0, 34) + ' ...'
+    if(size > 40){
+      this.description = description.substring(0, 40) + '...'
     }
   }
 
