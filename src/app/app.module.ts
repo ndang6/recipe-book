@@ -9,13 +9,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RecipesModule } from './recipes/recipes.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
@@ -33,7 +31,6 @@ import { ClockComponent } from './clock/clock.component';
   imports: [
     AppRoutingModule,
     RecipesModule,
-    ShoppingListModule,
     SharedModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -45,7 +42,6 @@ import { ClockComponent } from './clock/clock.component';
     DragDropModule
   ],
   providers: [
-    ShoppingListService, 
     RecipeService, 
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
   ],

@@ -24,7 +24,6 @@
                 Settings <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <!-- <li><a style="cursor: pointer;" (click)="onAddToShoppingList()">To Shopping List</a></li> -->
                 <li><a style="cursor: pointer;" (click)="onEditRecipe()"><fa-icon [icon]="faEdit" style="font-size: 12px; margin-right: 5px;"></fa-icon>Edit Recipe</a></li>
                 <li><a style="cursor: pointer;" (click)="onDeleteRecipe()"><fa-icon [icon]="faTrashAlt" style="font-size: 12px; margin-right: 5px;"></fa-icon>Delete Recipe</a></li>
             </ul>
@@ -53,7 +52,7 @@
             matTooltip="Close recipe">
         </span>
 
-        <div style="margin-bottom: 25px;">
+        <div style="margin-bottom: 25px; display: flex; justify-content: center;">
             <a 
                 class="list-group-item" 
                 style="border: none; font-size: 34px; text-align: center; margin: auto; margin-bottom: 10px; pointer-events: none; 

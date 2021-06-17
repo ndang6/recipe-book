@@ -1,3 +1,15 @@
+.cdk-drag-preview {
+  background: transparent;
+}
+
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1) !important;
+}
+
+.cdk-drag-placeholder {
+  visibility: hidden;
+}
+
 .my-pagination /deep/ .ngx-pagination .current {
   color: white;
   background: black;

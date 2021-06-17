@@ -60,10 +60,6 @@ export class RecipeDetailComponent implements OnInit {
   //   this.videoUrl = null;
   // }
 
-  onAddToShoppingList(){
-    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
-  }
-
   onEditRecipe(){
     this.router.navigate(['edit'], {relativeTo: this.route})
   }

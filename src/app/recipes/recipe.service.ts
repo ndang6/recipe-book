@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core"
 import { Subject } from "rxjs"
 import { Ingredient } from "./ingredient.model"
-import { ShoppingListService } from "../shopping-list/shopping-list.service"
 import { Recipe } from "./recipe.model"
 
 @Injectable()
@@ -12,8 +11,6 @@ export class RecipeService {
 
     private recipes: Recipe[] = []
     private fullRecipes: Recipe[] = []
-
-    constructor(private shoppingListService: ShoppingListService){}
 
     setRecipes(recipes: Recipe[]){
         this.recipes = JSON.parse(JSON.stringify(recipes)) // deep copy
@@ -35,10 +32,6 @@ export class RecipeService {
 
     getRecipeById(index: number){
         return this.recipes[index]
-    }
-
-    addIngredientsToShoppingList(ingredients: Ingredient[]){
-        this.shoppingListService.addIngredients(ingredients)
     }
 
     addRecipe(recipe: Recipe){
