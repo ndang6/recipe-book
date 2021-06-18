@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../recipe.model';
 import { faTag } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
@@ -14,13 +13,8 @@ export class RecipeItemComponent implements OnInit{
   @Input() recipe: Recipe
   @Input() index: number
 
-  nameFontSize: string = '16px'
-  nameFontWeight: string = '500'
-  descFontSize: string = '13px'
-
-  isDoneLoading = false
+  isDoneLoading: boolean = false
   description: string = ''
-  showDesc = false
 
   ngOnInit(): void {
     this.description = this.recipe.desc
@@ -30,26 +24,16 @@ export class RecipeItemComponent implements OnInit{
   resizeText(description: string){
     const size = description.length
 
-    if(size > 40){
-      this.description = description.substring(0, 40) + '...'
+    if(size > 38){
+      const tempDescription = description.substring(0, 38)
+      const lastSpaceIndex = tempDescription.lastIndexOf(" ")
+      this.description = tempDescription.substring(0, lastSpaceIndex) + " ..."
     }
   }
 
-  onDoneLoading() {
-    this.isDoneLoading = true
-  }
+  onDoneLoading() { this.isDoneLoading = true }
 
-  onMouseOver(){
-    this.description = this.recipe.desc
-  }
+  onMouseOver(){ this.description = this.recipe.desc }
 
-  onMouseLeave(){ 
-    this.resizeText(this.description)
-  }
-
-  // getAnchorClass(){
-  //   return (this.recipe.category === 'dessert') 
-  //     ? 'list-group-item list-group-item-success clearfix' 
-  //     : 'list-group-item clearfix'
-  // }
+  onMouseLeave(){  this.resizeText(this.description) }
 }

@@ -1,3 +1,22 @@
+.mainDiv {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.p1 {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.b1 {
+  margin-right: 3px;
+  font-size: 15px;
+}
+
+fa-icon {
+  margin-right: 10px;
+}
+
 .cdk-drag-preview {
   background: transparent;
 }
@@ -33,18 +52,13 @@
   font-size: 15px;
 }
 
-/* @media screen and (max-width: 1200px) {
-  .hideRandomButton {
-    display: none;
-  }
-} */
-
 @media screen and (max-width: 768px) {
   .smallscreen {
     display: none;
   }
 
-  .row .col-xs-12 {
-    margin-top: 40px !important;
+  .row .col-xs-10 {
+    margin-top: 60px !important;
+    margin-left: 5px;
   }
 }

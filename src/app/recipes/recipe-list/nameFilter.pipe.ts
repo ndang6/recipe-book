@@ -8,12 +8,12 @@ export class NameFilterPipe implements PipeTransform {
     if(filterString === '' || filterString.length < 3) return value
 
     const resultArray = []
+
     for(const item of value){
-      let lowercaseName = item[propName].toLowerCase()
-      if(lowercaseName.includes(filterString.toLowerCase())){
+      if(item[propName].toLowerCase().includes(filterString.toLowerCase()))
         resultArray.push(item)
-      }
     }
+    
     return resultArray
   }  
 }

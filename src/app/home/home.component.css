@@ -1,3 +1,39 @@
+.row {
+  margin-top: 100px;
+}
+
+.smallscreen {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 80%;
+  margin: 20px auto;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+.smallscreen > p {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+.smallscreen2 > p {
+  color: white;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.smallscreen2 {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 30%;
+  margin: 20px auto;
+}
+
+.smallscreen2 > p:hover {
+  color: green !important;
+}
+
 @media screen and (max-width: 1000px) {
   .smallscreen {
     width: 90% !important;
@@ -21,16 +57,16 @@
 }
 
 @media screen and (max-width: 790px) {
+  .smallscreen .icon {
+    font-size: 50px !important;
+  }
+
   .smallscreen {
     width: 90% !important;
   }
 
   .smallscreen > p {
     font-size: 25px !important;
-  }
-
-  .smallscreen .icon {
-    font-size: 50px !important;
   }
 
   .smallscreen2 {

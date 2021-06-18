@@ -21,7 +21,6 @@ export class RecipeDetailComponent implements OnInit {
   recipeImagePositionAbove = true
   recipe: Recipe;
   id: number;
-  videoUrl: SafeResourceUrl = null;
 
   constructor(
     private recipeService: RecipeService, 
@@ -42,23 +41,12 @@ export class RecipeDetailComponent implements OnInit {
             imagePath: '',
             localImage: null,
             ingredients: [],
-            videoURL: 'https://www.youtube.com/embed/tB55iAo3p2Y',
             instructions: []
           }
         } 
       }
     )
   }
-
-  // updateVideoUrl(){
-  //   console.log(this.recipe.videoURL)
-  //   this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://www.youtube.com/embed/tB55iAo3p2Y');
-  //   // this.videoUrl = <string>this.sanitizer.bypassSecurityTrustResourceUrl(this.recipe.videoURL)
-  // }
-
-  // removeVideoUrl(){
-  //   this.videoUrl = null;
-  // }
 
   onEditRecipe(){
     this.router.navigate(['edit'], {relativeTo: this.route})

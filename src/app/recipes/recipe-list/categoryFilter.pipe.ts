@@ -8,11 +8,12 @@ export class CategoryFilterPipe implements PipeTransform {
     if(filterString === '') return value
 
     const resultArray = []
+
     for(const item of value){
-      if(item[propName] === filterString){
+      if(item[propName] === filterString)
         resultArray.push(item)
-      }
     }
+
     return resultArray
   }  
 }

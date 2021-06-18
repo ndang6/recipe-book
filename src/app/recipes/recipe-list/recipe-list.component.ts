@@ -14,33 +14,24 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
-  faIceCream = faIceCream
-  faUtensils = faUtensils
-  faQuestion = faQuestion
-  faToggleOn = faToggleOn
-  faToggleOff = faToggleOff
-  faInfo = faInfo
+  faIceCream = faIceCream; faUtensils = faUtensils; faQuestion = faQuestion; faToggleOn = faToggleOn; faToggleOff = faToggleOff; faInfo = faInfo
 
-  pagination: boolean = false
-  categorySelected: string = ''
-  nameSelected: string = ''
+  pagination: boolean = false; categorySelected: string = ''; nameSelected: string = ''
 
   recipes: Recipe[]
   fullRecipes: Recipe[]
-  shortRecipes: Object[]
-  numOfDesserts: number
+
+  numOfDesserts: number = 0
   isAdmin: boolean = false
   isEdited: boolean = false
 
-  recipesSubscription: Subscription
-  fullRecipesSubscription: Subscription
-  isEditedSubscription: Subscription
+  recipesSub: Subscription
+  fullRecipesSub: Subscription
+  isEditedSub: Subscription
 
-  isLoading = false
-  isSearching = false
+  isLoading: boolean = false; isSearching: boolean = false
   error: string = null
-  currentPage: number = 1
-  itemsPerPage: number = 5
+  currentPage: number = 1; itemsPerPage: number = 5
 
   constructor(
     private recipeService: RecipeService, 
@@ -53,56 +44,30 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.isLoading = true
     this.isAdmin = (this.authService.user.value.email === "admin@test.com") || (this.authService.user.value.email === "maica59aimable@gmail.com")
 
-    this.recipesSubscription = this.recipeService.recipesChanged.subscribe(
+    this.recipesSub = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
-        this.recipes = recipes
-        this.numOfDesserts = 0
-        for(let recipe of this.recipes){
-          if(recipe.category === 'dessert') this.numOfDesserts += 1
-        }
-
-        this.isLoading = false
-      }
-    );
-
-    this.fullRecipesSubscription = this.recipeService.fullRecipesChanged.subscribe(
-      (recipes: Recipe[]) => {
-        this.fullRecipes = recipes
-      }
-    );
-
-    this.isEditedSubscription = this.recipeService.isEdited.subscribe((value: boolean) => this.isEdited = value)
+          this.recipes = recipes
+          for(let recipe of this.recipes){ if(recipe.category === 'dessert') this.numOfDesserts += 1}
+          this.isLoading = false
+    })
+    this.fullRecipesSub = this.recipeService.fullRecipesChanged.subscribe((recipes: Recipe[]) => this.fullRecipes = recipes)
+    this.isEditedSub = this.recipeService.isEdited.subscribe((value: boolean) => this.isEdited = value)
   }
 
   diff(array1: Recipe[], array2: Recipe[]){
-    if( (array1.length !== array2.length) || this.isEdited) return true
-    return false
+    return ( (array1.length !== array2.length) || this.isEdited)
   }
 
-  getShortRecipes(){
-    this.shortRecipes = this.recipes.map(recipe => {return {'name': recipe.name, 'ingredients': recipe.ingredients, 'instructions': recipe.instructions}})
-  }
+  onNewRecipe(){ this.router.navigate(['new'], {relativeTo: this.route}) }
 
-  ngOnDestroy(){
-    this.recipesSubscription.unsubscribe();
-    this.fullRecipesSubscription.unsubscribe();
-    this.isEditedSubscription.unsubscribe();
-  }
-
-  onNewRecipe(){
-    this.router.navigate(['new'], {relativeTo: this.route})
-  }
-
-  onShowJSON(){
-    this.router.navigate(['json'], {relativeTo: this.route})
-  }
+  onShowJSON(){ this.router.navigate(['json'], {relativeTo: this.route}) }
 
   getRecipes(){
     this.recipeService.setRecipes(this.recipeService.getFullRecipes())
     this.categorySelected = ''
     this.currentPage = 1
-
     this.recipeService.isEdited.next(false)
+
     this.router.navigate(['/recipes'])
   }
 
@@ -119,6 +84,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.recipeService.isEdited.next(false)
     this.recipeService.setFullRecipes(this.recipes)
     this.error = null
+
     this.router.navigate(['/recipes'])
   }
   
@@ -129,7 +95,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   onSelectRandom(){
     this.getRecipes()
-
     const randomNum = Math.round(Math.random() * (this.recipes.length-1) )
     this.currentPage = (Math.floor((randomNum / this.itemsPerPage)) + 1)
 
@@ -164,5 +129,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   togglePagination() {
     this.pagination = !this.pagination
     this.getRecipes()
+  }
+
+  ngOnDestroy(){
+    this.recipesSub.unsubscribe();
+    this.fullRecipesSub.unsubscribe();
+    this.isEditedSub.unsubscribe();
   }
 }

@@ -98,7 +98,7 @@ export class RecipeEditComponent implements OnInit {
     let totalItems: number = this.recipeService.getRecipes().length
 
     if(this.localImageURL) imagePath = this.localImageURL
-    const newRecipe = new Recipe(totalItems, name, category, description, imagePath, this.selectedFile, ingredients, "https://www.youtube.com/embed/tB55iAo3p2Y", instructions);
+    const newRecipe = new Recipe(totalItems, name, category, description, imagePath, this.selectedFile, ingredients, instructions);
       
     if(this.editMode)
       this.recipeService.updateRecipe(this.id, newRecipe);

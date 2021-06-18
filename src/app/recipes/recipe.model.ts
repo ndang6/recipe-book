@@ -12,7 +12,6 @@ export class Recipe{
         public imagePath: string,
         public localImage: string | ArrayBuffer, 
         public ingredients: Ingredient[], 
-        public videoURL: string,
         public instructions: Instruction[]) {
             this.id = id
         }

@@ -4,71 +4,57 @@
     </div>   
 </ng-template>
 
-<div style="padding-left: 20px; padding-right: 20px;" *ngIf="!isLoading; else loading">
+<div *ngIf="!isLoading; else loading" class="mainDiv">
+
     <app-alert [message]="error" *ngIf="error" (close)="onClose()"></app-alert>
     
     <div class="row">
-        <div class="col-xs-12">
-            <p style="margin-top: 10px; font-size: 15px;" *ngIf="!categorySelected && nameSelected.length < 3">
-                Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts
-            </p>
-            <p style="margin-top: 10px; font-size: 15px;" *ngIf="categorySelected === 'dessert'">
-                Total {{numOfDesserts}} desserts
-            </p>
-            <p style="margin-top: 10px; font-size: 15px;" *ngIf="categorySelected === 'main'">
-                Total {{recipes.length - numOfDesserts}} main dishes
-            </p>
-            <p style="margin-top: 10px; font-size: 15px;" *ngIf="nameSelected.length >= 3">
-                Search Result
-            </p>
-            <p 
-                style="margin-top: 10px; color: red" *ngIf="diff(recipes, fullRecipes)"
+        <div class="col-sm-12 col-xs-10">
+
+            <div>
+                <p *ngIf="!categorySelected && nameSelected.length < 3" class="p1" >
+                    Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts
+                </p>
+                <p *ngIf="categorySelected === 'dessert'" class="p1">
+                    Total {{numOfDesserts}} desserts
+                </p>
+                <p *ngIf="categorySelected === 'main'" class="p1">
+                    Total {{recipes.length - numOfDesserts}} main dishes
+                </p>
+                <p *ngIf="nameSelected.length >= 3" class="p1">
+                    Search Result
+                </p>
+            </div>
+
+            <p
+                *ngIf="diff(recipes, fullRecipes)"
+                class="p1" 
+                style="color: red;"
                 matTooltip="You can undo the changes by clicking All Recipes">
                 * Unsaved Changes *
-            </p>
+            </p>        
             
             <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
                 <div>
-                    <button class="btn btn-success" (click)="getRecipes()" style="margin-right: 3px; font-size: 15px;">
-                        All Recipes
-                    </button>
-                    <button class="btn btn-warning" (click)="onSaveData()" style="margin-right: 3px; font-size: 15px;" *ngIf="diff(recipes, fullRecipes)">
-                        Save
-                    </button>
-                    <button class="btn btn-primary" (click)="onNewRecipe()" style="margin-right: 3px; font-size: 15px;">
-                        Add
-                    </button>
-                    <button 
-                        *ngIf="isAdmin"
-                        class="btn btn-primary" (click)="onShowJSON()" 
-                        style="font-size: 15px; margin-right: 3px;">
-                        JSON
-                    </button>           
+                    <button class="btn btn-success b1" (click)="getRecipes()">All Recipes</button>
+                    <button class="btn btn-warning b1" (click)="onSaveData()" *ngIf="diff(recipes, fullRecipes)">Save</button>
+                    <button class="btn btn-primary b1" (click)="onNewRecipe()">Add</button>
+                    <button *ngIf="isAdmin" class="btn btn-primary b1" (click)="onShowJSON()" >JSON</button>           
                 </div>            
             </div>
+
             <div style="margin-bottom: 10px; display: flex;">
-                <button *ngIf="pagination" class="transparentButton" (click)="togglePagination()" style="margin-left: -5px">
-                    <fa-icon [icon]="faToggleOn" style="font-size: 22px; color: green;" matTooltip="Pagination is ON"></fa-icon>
-                </button>
-                <button *ngIf="!pagination" class="transparentButton" (click)="togglePagination()" style="margin-left: -5px">
-                    <fa-icon [icon]="faToggleOff" style="font-size: 22px; color: red;" matTooltip="Pagination is OFF"></fa-icon>
-                </button>
-                <button *ngIf="pagination" class="transparentButton" (click)="onSelectRandom()" >
-                    <fa-icon [icon]="faQuestion" style="font-size: 20px;" matTooltip="Pick a random recipe"></fa-icon>
-                </button>
-                <button *ngIf="pagination" class="transparentButton" (click)="onSelectCategory('main')" >
-                    <fa-icon [icon]="faUtensils" style="font-size: 20px;" matTooltip="Main dishes only"></fa-icon>
-                </button>
-                <button *ngIf="pagination" class="transparentButton" (click)="onSelectCategory('dessert')">
-                    <fa-icon [icon]="faIceCream" style="font-size: 20px;" matTooltip="Desserts only"></fa-icon>
-                </button>
-                
-                <div *ngIf="pagination" style="display: flex;">
+                <div *ngIf="pagination">
+                    <fa-icon (click)="togglePagination()" [icon]="faToggleOn" style="font-size: 22px; color: green;" matTooltip="Pagination is ON"></fa-icon>
+                    <fa-icon (click)="onSelectRandom()" [icon]="faQuestion" style="font-size: 20px;" matTooltip="Pick a random recipe"></fa-icon>
+                    <fa-icon (click)="onSelectCategory('main')" [icon]="faUtensils" style="font-size: 20px;" matTooltip="Main dishes only"></fa-icon>
+                    <fa-icon (click)="onSelectCategory('dessert')" [icon]="faIceCream" style="font-size: 20px;" matTooltip="Desserts only"></fa-icon>
+                    
                     <input
                         #searchInput
                         (input)="search($event)" 
                         placeholder="Search ..." 
-                        style="padding: 3px; font-size: 14px; width: 140px; border: none; margin-left: 5px">
+                        style="padding: 3px; font-size: 14px; width: 140px; border: none;">
                     <span
                         *ngIf="isSearching" 
                         (click)="onClear(searchInput)" 
@@ -77,13 +63,10 @@
                         matTooltip="Clear Search Result">
                     </span>
                 </div>
-                
-                <div style="margin-top: 8px;">
-                    <p 
-                        *ngIf="!pagination"
-                        style="font-size: 15px; margin-left: 10px">
-                        Let's drag recipes around!
-                    </p> 
+                            
+                <div *ngIf="!pagination" style="display: flex;">
+                    <fa-icon (click)="togglePagination()" [icon]="faToggleOff" style="font-size: 22px; color: red;" matTooltip="Pagination is OFF"></fa-icon>
+                    <p style="font-size: 15px;">Let's drag recipes around!</p> 
                 </div>                
             </div>
              
@@ -96,13 +79,12 @@
                     [recipe]="recipeItem"
                     [index] = "recipeItem.id">
                 </app-recipe-item>
-            </div>
 
-            <pagination-controls
-                *ngIf="pagination"
-                (pageChange)="currentPage = $event"
-                class="my-pagination">
-            </pagination-controls>            
+                <pagination-controls
+                    (pageChange)="currentPage = $event"
+                    class="my-pagination">
+                </pagination-controls>    
+            </div>
 
             <div
                 *ngIf="!pagination"

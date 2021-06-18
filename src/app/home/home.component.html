@@ -1,27 +1,19 @@
-<div class="row" style="margin-top: 100px;">
+<div class="row">
   <div class="col-xs-12">
-    <div
-      class="smallscreen"  
-      style="background-color: rgba(0, 0, 0, 0.8); width: 80%; margin: 20px auto; padding-bottom: 10px; padding-top: 20px">
-      <p
-        style="color: white; font-size: 50px; text-align: center;">
+
+    <div class="smallscreen">
+      <p>
         This website is powered by
-        <fa-icon
-          class="icon" 
-          [icon]="faAngular" 
-          style="font-size: 80px; color:brown;" >
-        </fa-icon>
+        <fa-icon class="icon" [icon]="faAngular" style="font-size: 80px; color:brown;"></fa-icon>
       </p>      
     </div>
 
-    <div
-      class="smallscreen2"  
-      style="background-color: rgba(0, 0, 0, 0.6); width: 30%; margin: 20px auto;">
-      <a routerLink="/recipes" style="cursor: pointer; text-decoration: none;">
-        <p style="color: white; font-size: 20px; line-height: 50px; text-align: center;">
-          Explore the Recipes<fa-icon [icon]="faArrowRight" style="margin-left: 10px;"></fa-icon>
-        </p>
-      </a>     
+    <div class="smallscreen2">
+      <p routerLink="/recipes">
+        Explore the Recipes
+        <fa-icon [icon]="faArrowRight" style="margin-left: 10px;"></fa-icon>
+      </p>
     </div>
+
   </div>
 </div>

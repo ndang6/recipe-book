@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core"
 import { Subject } from "rxjs"
-import { Ingredient } from "./ingredient.model"
 import { Recipe } from "./recipe.model"
 
 @Injectable()
@@ -13,30 +12,23 @@ export class RecipeService {
     private fullRecipes: Recipe[] = []
 
     setRecipes(recipes: Recipe[]){
-        this.recipes = JSON.parse(JSON.stringify(recipes)) // deep copy
+        this.recipes = recipes
         this.recipesChanged.next(this.recipes.slice())
     }
 
     setFullRecipes(recipes: Recipe[]){
-        this.fullRecipes = JSON.parse(JSON.stringify(recipes))
+        this.fullRecipes = recipes
         this.fullRecipesChanged.next(this.fullRecipes.slice())
     }
 
-    getRecipes(){
-        return this.recipes.slice() // returns a new array which is an exact copy
-    }
+    getRecipes(){ return this.recipes.slice() }
 
-    getFullRecipes(){
-        return this.fullRecipes.slice()
-    }
+    getFullRecipes(){ return this.fullRecipes.slice() }
 
-    getRecipeById(index: number){
-        return this.recipes[index]
-    }
+    getRecipeById(index: number){ return this.recipes[index] }
 
     addRecipe(recipe: Recipe){
         this.recipes.push(recipe)
-        console.log(this.recipes)
         this.recipesChanged.next(this.recipes.slice())
     }
 

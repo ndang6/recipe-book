@@ -1,11 +1,9 @@
 .container {
-  padding-top: 30px;
+  padding-top: 80px;
   padding-bottom: 30px;
-  margin-top: 50px;
 }
 
 .background1 {
-  /* background-image: url("../assets/images/background2.jpg"); */
   background-position: bottom;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -25,6 +23,5 @@
   .container {
     padding-top: 0px;
     padding-bottom: 0px;
-    margin-top: 20px;
   }
 }

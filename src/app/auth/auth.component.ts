@@ -45,14 +45,13 @@ export class AuthComponent {
             authObs = this.authService.signup(email, password);
         }
         
-        authObs.subscribe(res => {
-            this.dataStorageService.fetchRecipes().subscribe(res => {
-                this.isLoading = false;
-                this.router.navigate(['/recipes']);
-            });       
-        }, errMessage => {
-            this.error = errMessage;
+        authObs.subscribe(() => {
             this.isLoading = false;
+            this.router.navigate(['/recipes']);    
+        }, errMessage => {
+            this.isLoading = false
+            this.error = errMessage;
+            setTimeout(() => this.error = '', 3000)
         });
         
         this.form.reset();
