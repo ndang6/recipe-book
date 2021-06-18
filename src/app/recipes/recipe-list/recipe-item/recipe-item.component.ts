@@ -1,14 +1,29 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../recipe.model';
 import { faTag } from '@fortawesome/free-solid-svg-icons';
+import { state, style, transition, animate, trigger } from '@angular/animations'
 
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
-  styleUrls: ['./recipe-item.component.css']
+  styleUrls: ['./recipe-item.component.css'],
+  animations: [
+    trigger('changeDivSize', [
+      state('initial', style({
+        height: '70px'
+      })),
+      state('final', style({
+        height: '85px'
+      })),
+      transition('initial=>final', animate('200ms')),
+      transition('final=>initial', animate('150ms'))
+    ]),
+  ]
 })
 export class RecipeItemComponent implements OnInit{
   faTag = faTag
+  currentState: string = 'initial'
+  descSize: number = 0
 
   @Input() recipe: Recipe
   @Input() index: number
@@ -18,13 +33,14 @@ export class RecipeItemComponent implements OnInit{
 
   ngOnInit(): void {
     this.description = this.recipe.desc
+    this.descSize = this.description.length
     this.resizeText(this.description)
   }
   
   resizeText(description: string){
     const size = description.length
 
-    if(size > 38){
+    if(this.descSize > 38){
       const tempDescription = description.substring(0, 38)
       const lastSpaceIndex = tempDescription.lastIndexOf(" ")
       this.description = tempDescription.substring(0, lastSpaceIndex) + " ..."
@@ -33,7 +49,17 @@ export class RecipeItemComponent implements OnInit{
 
   onDoneLoading() { this.isDoneLoading = true }
 
-  onMouseOver(){ this.description = this.recipe.desc }
+  onMouseOver(){
+    if(this.descSize > 38){
+      this.description = this.recipe.desc
+      this.currentState = 'final' 
+    }   
+  }
 
-  onMouseLeave(){  this.resizeText(this.description) }
+  onMouseLeave(){
+    if(this.descSize > 38){
+      this.resizeText(this.description)
+      this.currentState = 'initial'
+    }      
+  }
 }

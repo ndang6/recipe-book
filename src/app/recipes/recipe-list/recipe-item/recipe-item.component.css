@@ -7,6 +7,10 @@
   background-color: cornsilk !important;
 }
 
+div:hover {
+  animation-duration: 100ms;
+}
+
 @media screen and (max-width: 1200px) {
   .mediumScreen {
     display: none;
