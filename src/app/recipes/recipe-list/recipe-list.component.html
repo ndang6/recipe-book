@@ -9,9 +9,9 @@
     <app-alert [message]="error" *ngIf="error" (close)="onClose()"></app-alert>
     
     <div class="row">
-        <div class="col-sm-12 col-xs-10">
+        <div class="col-sm-12 col-xs-11">
 
-            <div>
+            <div style="margin-top: 20px;">
                 <p *ngIf="!categorySelected && nameSelected.length < 3" class="p1" >
                     Total {{recipes.length}} recipes, including {{numOfDesserts}} desserts
                 </p>
@@ -34,7 +34,7 @@
                 * Unsaved Changes *
             </p>        
             
-            <div style="margin-top: 5px; margin-bottom: 10px;" class="smallscreen">
+            <div style="margin-top: 5px;" class="smallscreen">
                 <div>
                     <button class="btn btn-success b1" (click)="getRecipes()">All Recipes</button>
                     <button class="btn btn-warning b1" (click)="onSaveData()" *ngIf="diff(recipes, fullRecipes)">Save</button>
@@ -43,7 +43,7 @@
                 </div>            
             </div>
 
-            <div style="margin-bottom: 10px; display: flex;">
+            <div style="margin-top: 20px; display: flex;">
                 <div *ngIf="pagination">
                     <fa-icon (click)="togglePagination()" [icon]="faToggleOn" style="font-size: 22px; color: green;" matTooltip="Pagination is ON"></fa-icon>
                     <fa-icon (click)="onSelectRandom()" [icon]="faQuestion" style="font-size: 20px;" matTooltip="Pick a random recipe"></fa-icon>
@@ -70,7 +70,7 @@
                 </div>                
             </div>
              
-            <div *ngIf="pagination">
+            <div *ngIf="pagination" style="margin-top: 20px; margin-left: 10px;">
                 <app-recipe-item
                     *ngFor="let recipeItem of recipes 
                         | categoryFilter: categorySelected: 'category' 
@@ -88,6 +88,7 @@
 
             <div
                 *ngIf="!pagination"
+                style="margin-top: 20px; margin-left: 10px;"
                 cdkDropList
                 [cdkDropListData]="recipes"
                 (cdkDropListDropped)="drop($event)">

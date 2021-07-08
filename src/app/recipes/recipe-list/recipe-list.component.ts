@@ -31,7 +31,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = false; isSearching: boolean = false
   error: string = null
-  currentPage: number = 1; itemsPerPage: number = 5
+  currentPage: number = 1; itemsPerPage: number = 6
 
   constructor(
     private recipeService: RecipeService, 
@@ -63,7 +63,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   onShowJSON(){ this.router.navigate(['json'], {relativeTo: this.route}) }
 
   getRecipes(){
-    this.recipeService.setRecipes(this.recipeService.getFullRecipes())
     this.categorySelected = ''
     this.currentPage = 1
     this.recipeService.isEdited.next(false)
@@ -120,9 +119,12 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   drop(event: CdkDragDrop<Recipe[]>) {
     if (event.previousContainer === event.container) {
-      event.previousIndex += (this.currentPage - 1) * this.itemsPerPage
-      event.currentIndex += (this.currentPage - 1) * this.itemsPerPage
-      moveItemInArray(event.container.data, event.previousIndex , event.currentIndex);
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
     }
   }
 

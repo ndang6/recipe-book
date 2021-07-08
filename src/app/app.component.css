@@ -5,18 +5,14 @@
 
 .background1 {
   background-position: bottom;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: max-content;
-  min-height: 800px;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  -o-background-size: auto;
+  background-size: auto;
 }
 
 .background2 {
   background-color: rgba(0, 0, 0, 0.4);
-  height: max-content;
-  min-height: 800px;
 }
 
 @media screen and (max-width: 768px) {

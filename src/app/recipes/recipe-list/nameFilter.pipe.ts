@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class NameFilterPipe implements PipeTransform {
   transform(value: string, filterString: string, propName: string) {
+    // value = recipes
     if(filterString === '' || filterString.length < 3) return value
 
     const resultArray = []

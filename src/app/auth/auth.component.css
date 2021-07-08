@@ -9,6 +9,10 @@ label {
   color: white;
 }
 
+.help-block {
+  color: yellow;
+}
+
 .form-group > .ng-invalid.ng-touched {
   border: 1px solid red;
 }

@@ -1,10 +1,10 @@
-<div    
-    style="cursor: pointer; margin-bottom: 20px;"
-    routerLink="{{index}}"
-    (mouseover)="onMouseOver()"
-    (mouseleave)="onMouseLeave()"
-    [@changeDivSize]=currentState>
-    <div class="row" tabindex="1">
+
+    <div class="row" tabindex="1"
+        style="cursor: pointer; margin-bottom: 20px;"
+        routerLink="{{index}}"
+        (mouseover)="onMouseOver()"
+        (mouseleave)="onMouseLeave()"
+        [@changeDivSize]=currentState>
 
         <div class="col-xs-3 mediumScreen">
             <mat-spinner *ngIf="!isDoneLoading" [diameter]="30"></mat-spinner>
@@ -30,7 +30,6 @@
         </div>
 
     </div>
-</div>
 
 
  

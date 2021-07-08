@@ -35,15 +35,16 @@ import { ClockComponent } from './clock/clock.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,  
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
     MatTooltipModule,
     FontAwesomeModule,
     DragDropModule
   ],
   providers: [
-    RecipeService, 
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+    RecipeService,
+    // the new directives are added to the previously registered directives instead of overriding 
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
